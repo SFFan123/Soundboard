@@ -1,0 +1,385 @@
+audio
+{
+    float:right;
+}
+
+#bottom-div{
+    position: absolute; 
+    bottom:0;
+    display: inline-flex;
+}
+#bottomGif
+{
+    display: block;
+    max-height:130px;
+    width: auto;
+    height: auto;
+}
+#hint_right_side
+{
+    background-color: rgba(255, 255, 255,0.8);
+    width: 240px;
+    right:0;
+    position: fixed; 
+    z-index: -2;
+    font-size: 16px;
+    height: auto;
+    cursor: pointer;
+}
+
+#info_right_side
+{
+    margin-top: 50px;
+    background-color: yellow;
+    border: 2px solid red;
+    opacity: 0.9;
+    right:0;
+    position: fixed;
+    z-index: -1;
+    width: 240px;
+    word-wrap: break-all;
+}
+#queue_info_right_side
+{
+    margin-top: 126px;
+    background-color: red;
+    width: 240px;
+    opacity: 0.9;
+    right:0;
+    position: fixed;
+    display: none;
+    z-index: 2;
+    word-wrap: break-word;
+}
+.left-side-container
+{
+    position: absolute;
+    font-size: 20px;
+    top: 1px;
+    left: -8px;
+    height: 100%;
+}
+#left-top-fixed-div
+{
+    z-index: -2;
+    position: fixed !important;
+}
+.random-meme-div
+{
+    display: inline-block;
+    font-size: inherit;
+    background-color: rgba(255, 255, 255,1);
+    opacity: 0.8;
+    cursor:pointer;
+    padding-left: 8px;
+
+}
+.random-meme-div:hover, #left-top-fixed-div:hover
+{
+    opacity: 1;
+    z-index: 4 !important;
+}
+
+#currentMediaDisplay
+{
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.25s linear;
+    font-size: inherit;
+    background-color: rgba(0, 128, 0,0.9);
+    display: inline-block;
+}
+#currentMediaDisplay:empty
+{
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 1s, opacity 1s linear;
+}
+
+
+#currentMediaDisplay::before 
+{
+    content: "Currently Playing:";
+    margin-left:-35px;
+}
+
+
+#myInput {
+  background-image: url('https://kabie.namic.co/resources/image/misc/katieRes.png');
+  background-position: 5px 5px;
+  background-size: 28px 28px;
+  background-repeat: no-repeat;
+  width: 90%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#wrapperTable
+{
+    min-width: 51%;
+    border: none;
+    margin: auto;
+    z-index: 1;
+        background-color: #FFFFFF;
+}
+#Sample-Counter
+{
+    margin-left: 2px;
+    position: absolute; 
+    float: left;
+}
+.search-box,.close-icon,.search-wrapper {
+    position: relative;
+    padding: 10px;
+}
+.search-wrapper {
+    width: 100%;
+    margin: auto;
+    margin-top: 1px;
+}
+.close-icon {
+    border:1px solid transparent;
+    background-color: transparent;
+    display: inline-block;
+    vertical-align: middle;
+    outline: 0;
+    cursor: pointer;
+}
+.close-icon:after {
+    content: "X";
+    display: block;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    background-color: #FA9595;
+    z-index:1;
+    right: 35px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 2px;
+    border-radius: 50%;
+    text-align: center;
+    color: white;
+    font-weight: normal;
+    font-size: 12px;
+    box-shadow: 0 0 2px #E50F0F;
+    cursor: pointer;
+}
+.search-box:not(:valid) ~ .close-icon {
+    display: none;
+}
+.control_button
+{
+    background-color: #e7e7e7; 
+    color: black;
+    margin-top: 4px;
+    border-radius: 4px;
+    border: none;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    min-width: 90px;
+    overflow: hidden;
+}
+.control_button:hover
+{
+    background-color: #DADADA;
+    cursor: pointer;
+}
+.control_button:active
+{
+    background-color: #DADADA;
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
+}
+.serach_Tag
+{
+    display:none;
+}
+@media screen and (min-width: 1463px){
+    #soundTable    {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.subGridContainer {
+    display: grid;
+    grid-template-columns: auto auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+    background-color: #A5A5A5;
+}
+.gird-item
+{
+    display: block;
+    text-align: right;
+}
+.gird-item a{
+    position: relative;
+    top: 12%;
+    transform: translateY(-12%); 
+}
+.subGridContainer:nth-child(even)
+{
+    border-left: none;
+}
+
+.subGridContainer:nth-child(n+3)
+{
+    background-color: #8e8d8d;
+    border-top: none;
+}
+}
+@media screen and (max-width: 1462px){
+    #soundTable {
+    display: grid;
+    grid-template-columns: auto;
+}
+.subGridContainer {
+    display: grid;
+    grid-template-columns: auto auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+    background-color: #A5A5A5;
+}
+
+.gird-item a{
+    position: relative;
+    top: 12%;
+    transform: translateY(-12%); 
+}
+.subGridContainer:nth-child(even)
+{
+    background-color: #8e8d8d;
+    border-top: none;
+    border-bottom: none;
+}
+}
+
+.Meta-Data
+{
+    float: left;
+    margin-left: 5px;
+    margin-top: 2px;
+}
+
+#Bottom_explnation_stuff
+{
+    font-size: 13px;
+    display: block;
+}
+#Bottom_explnation_stuff img
+{
+    height:17px;
+    width: 17px;
+}
+#play{
+    background-color: #ff8f8f;
+}
+#play:hover{
+animation: 1s multicolor infinite;
+}
+@keyframes multicolor {
+    0% {
+        background-color: red;
+    }
+    25% {
+        background-color: #ff8f8f;
+    }
+    50% {
+        background-color: red;
+    }
+    75% {
+        background-color: #ff8f8f;
+    }
+    100% {
+        background-color: red;
+    }
+}
+.Smaple-Name
+{
+ text-align: center;
+}
+.Smaple-Name:empty:after
+{
+    content: "Empty Slot";
+    font-style: italic;
+}
+.fa-border{
+    border-color: black;
+    border-width: 2px;
+    border-radius: 5px;
+}
+.fa-twitch{
+    color: #6441A4;
+}
+
+#player_container
+{
+    position: sticky;
+    bottom: 0;
+    width: 57%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+#player
+{
+    padding-bottom: 25px;
+}
+
+.player_button
+{
+    background-color: #e7e7e7;
+    color: black;
+    border: 1px solid black;
+    padding: 10px 20px;
+    height: 54px;
+    width: 54px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    
+}
+button{
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+button[onclick]
+{
+    opacity: 1;
+    cursor: pointer;
+}
+button:disabled
+{
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+.smallerbutton
+{
+    background-color: #e7e7e7;
+    color: black;
+    border: 1px solid black;
+    padding-top: 4px;
+    padding-right: 6px;
+    height: 38px;
+    width: 38px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 50%;
+}
+#player_control_buttons
+{
+    float: right; 
+}
