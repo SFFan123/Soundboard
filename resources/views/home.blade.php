@@ -18,11 +18,7 @@
                     <a class="list-group-item list-group-item-action list-group-item-success">Gif Management <img src="https://cdn.betterttv.net/emote/59b594fe0d64e35b941728ec/1x"></a>
                     <a class="list-group-item list-group-item-action list-group-item-success">Soundboard page completely changed to dynamic <img src="https://cdn.discordapp.com/emojis/393591416166809613.png?" style="width: 26px; height: 26px;"></a>
                     <a class="list-group-item list-group-item-action list-group-item-success">Background Image Management <img src="https://cdn.discordapp.com/emojis/467095069959389184.png" style="height: 26px; width: 26px;"></a>
-                    <a class="list-group-item list-group-item-action list-group-item-info">???Error Pages Customization???</a>
-                    <a class="list-group-item list-group-item-action list-group-item-info">Rework of Page CSS/JS</a>
-                    <a class="list-group-item list-group-item-action list-group-item-info">Deploying to live server?</a>
-                    <a class="list-group-item list-group-item-action list-group-item-info">User Management - inclusive Userlevels <img src="https://cdn.frankerfacez.com/emoticon/59357/1"> </a>
-                    <a class="list-group-item list-group-item-action list-group-item-info">Move of Bingo games</a>
+                    <div class="list-group-item list-group-item-action list-group-item-info">status on development visit <a href="https://github.com/SFFan123/Soundboard/issues">github.com/SFFan123/Soundboard/issues</a></div>
 
                 </div>
                 </div>
