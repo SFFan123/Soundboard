@@ -7,6 +7,7 @@ use Soundboard\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Soundboard\Role;
 
 class RegisterController extends Controller
 {
@@ -68,9 +69,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        $user
-            ->roles()
-            ->attach(Role::where('name', 'employee')->first());
+        $user->roles()->attach(Role::where('name', 'user')->first());
 
         return $user;
     }
