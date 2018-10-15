@@ -75,31 +75,34 @@
         </nav>
         <main class="py-4">
             <div id="cheapSidebar" style="position: relative;
-    float: left; margin-left: 2em;">
+    float: left; margin-left: 1em;">
                 <nav class="nav flex-column">
-                    <a class="nav-link active" href="/home">Home</a>
-                    <a class="nav-link dropdown-toggle">Samples</a>
-                    <div class="dropdown-item">
-                        <a class="nav-link" href="/samples/manage">Manage</a>
-                        <a class="nav-link" href="/samples/create">Upload</a>
+                    <a class="list-group-item list-group-item-primary">Super cheesy Navigation</a>
+                    <a href="/home" class="list-group-item list-group-item-primary">Home</a>
+                    <a href="#SampleSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle list-group-item list-group-item-primary">Samples</a>
+                    <div class="collapse list-unstyled @if(strpos(Route::current()->uri,'samples') !== false) show @endif" id="SampleSubmenu">
+                        <a href="/samples/manage" class="list-group-item @if(strpos(Route::current()->uri,'samples/manage') !== false) list-group-item-success @else list-group-item-light @endif">Manage</a>
+                        <a href="/samples/create" class="list-group-item @if(strpos(Route::current()->uri,'samples/create') !== false) list-group-item-success @else list-group-item-light @endif">Upload</a>
                     </div>
-                    <a class="nav-link dropdown-toggle">Memes</a>
-                    <div class="dropdown-item">
-                        <a class="nav-link" href="/memes/manage">Manage</a>
-                        <a class="nav-link" href="/memes/create">Upload</a>
+
+                    <a href="#MemesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle list-group-item list-group-item-primary">Memes</a>
+                    <div class="collapse list-unstyled @if(strpos(Route::current()->uri,'memes') !== false) show @endif" id="MemesSubmenu">
+                        <a href="/memes/manage" class="list-group-item @if(strpos(Route::current()->uri,'memes/manage') !== false) list-group-item-success @else list-group-item-light @endif">Manage</a>
+                        <a href="/memes/create" class="list-group-item @if(strpos(Route::current()->uri,'memes/create') !== false) list-group-item-success @else list-group-item-light @endif">Upload</a>
                     </div>
-                    <a class="nav-link dropdown-toggle">Gifs</a>
-                    <div class="dropdown-item">
-                        <a class="nav-link" href="/gifs/manage">Manage</a>
-                        <a class="nav-link" href="/gifs/create">Upload</a>
+
+                    <a href="#GifsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle list-group-item list-group-item-primary">Gifs</a>
+                    <div class="collapse list-unstyled @if(strpos(Route::current()->uri,'gifs') !== false) show @endif" id="GifsSubmenu">
+                        <a href="/gifs/manage" class="list-group-item @if(strpos(Route::current()->uri,'gifs/manage') !== false) list-group-item-success @else list-group-item-light @endif">Manage</a>
+                        <a href="/gifs/create" class="list-group-item @if(strpos(Route::current()->uri,'gifs/create') !== false) list-group-item-success @else list-group-item-light @endif">Upload</a>
                     </div>
-                    <a class="nav-link dropdown-toggle">Background</a>
-                    <div class="dropdown-item">
-                        <a class="nav-link" href="/background/manage">Manage</a>
-                        <a class="nav-link" href="/background/create">Upload</a>
+                    <a href="#BackgroundSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle list-group-item list-group-item-primary">Background</a>
+                    <div class="collapse list-unstyled  @if(strpos(Route::current()->uri,'background') !== false) show @endif" id="BackgroundSubmenu">
+                        <a href="/background/manage" class="list-group-item @if(strpos(Route::current()->uri,'background/manage') !== false) list-group-item-success @else list-group-item-light @endif">Manage</a>
+                        <a href="/background/create" class="list-group-item @if(strpos(Route::current()->uri,'background/create') !== false) list-group-item-success @else list-group-item-light @endif">Upload</a>
                     </div>
                     <div class="dropdown-divider"></div>
-                    <a class="nav-link active" href="/">Soundboard</a>
+                    <a href="/">Soundboard</a>
                 </nav>
             </div>
             @yield('content')
