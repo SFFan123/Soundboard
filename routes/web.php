@@ -110,7 +110,13 @@ Route::get('/background/edit/{id}', 'BackgroundController@edit')->middleware('au
 
 Route::patch('/background/edit/{id}', 'BackgroundController@update')->middleware('auth');
 
+Route::delete('/background/destroy', 'BackgroundController@destroy')->middleware('auth');
+
 Route::patch('/background/edit', 'BackgroundController@updateCurrent')->middleware('auth');
+
+Route::post('/background/manageUnused', 'BackgroundController@manageUnused')->middleware('auth');
+
+Route::delete('/background/manageUnused/', 'BackgroundController@deleteUnused')->middleware('auth');
 
 
 //Auth::routes();
@@ -120,8 +126,8 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 // Registration Routes...
-Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('register', 'Auth\RegisterController@register');
+//Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+//Route::post('register', 'Auth\RegisterController@register');
 
 // Password Reset Routes...
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');

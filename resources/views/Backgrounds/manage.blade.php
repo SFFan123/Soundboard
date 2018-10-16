@@ -24,6 +24,38 @@
                         </div>
                     </div>
                 @endif
+                @if(!empty($unusedBackgroundImages))
+                    <div class="card text-center">
+                        <div class="card-body bg-warning">
+                            <h5 class="card-title">{{count($unusedBackgroundImages)}} unused Backgroundimage(s) in storage</h5>
+                            <a href="#AssignUnused" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle list-group-item list-group-item-primary">Assign</a>
+                            <div class="collapse list-unstyled" id="AssignUnused">
+                                @foreach($unusedBackgroundImages as $unusedBackground)
+                                    <div class="form-group border border-dark bg-white">
+                                        <img style="width: 150px; height: auto; background-color: white; left:0" src="/storage/{{$unusedBackground}}"/>
+                                        <a>{{substr($unusedBackground,27)}}</a>
+                                        <div class="form-group">
+                                            <form method="POST" action="/background/manageUnused/">
+                                                @csrf
+                                                @method('POST')
+                                                <input type="hidden" name="id" value="{{Crypt::encrypt($unusedBackground)}}" >
+                                                <input type="submit" value="Add" class="btn btn-primary">
+                                            </form>
+                                            <div>
+                                                <form method="POST" action="/background/manageUnused/">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <input type="hidden" name="id" value="{{Crypt::encrypt($unusedBackground)}}" >
+                                                    <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to Delete this Background (Filename: {{substr($unusedBackground,27)}}) ?')">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                @endif
                 <div class="card-deck">
                     @foreach ($backgrounds as $background)
                         <div class="card" style="width: 18rem;">

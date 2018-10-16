@@ -25,7 +25,15 @@ class BackgroundController extends Controller
     {
         $activeBackground = activeBackground::getActiveID();
         $backgrounds = Background::all();
-        return view('Backgrounds.manage', compact('backgrounds', 'activeBackground'));
+        $unusedBackgroundImages = \Storage::files('backgrounds');//->where(empty(Background::where('filename' , $item)->first() );
+
+        foreach ($unusedBackgroundImages as $key => $background) {
+            if(!empty(Background::where('filename' , substr($background,12))->first())) {
+                unset($unusedBackgroundImages[$key]);
+            }
+        }
+
+        return view('Backgrounds.manage', compact('backgrounds', 'activeBackground', 'unusedBackgroundImages'));
     }
 
     /**
@@ -158,7 +166,17 @@ class BackgroundController extends Controller
     {
         $id = \Crypt::decrypt($request->id);
         $BackGroundToDelete = Background::find($id);
-
+        if(activeBackground::getActiveID() == $id)
+        {
+            if(Background::count()>1)
+            {
+                $this->setActiveBackground(Background::where('id', '!=', $id)->first()->id);
+            }
+            else
+            {
+                $this->setActiveBackground(-1);
+            }
+        }
         \Storage::delete('backgrounds\\'.$BackGroundToDelete->filename);
 
         $BackGroundToDelete->delete();
@@ -205,4 +223,29 @@ class BackgroundController extends Controller
         }
 
     }
+
+    public function manageUnused(Request $request)
+    {
+        Background::create([
+            'filename' => substr(\Crypt::decrypt($request->id) , 12),
+            'name' => substr(\Crypt::decrypt($request->id),27),
+            'enabled' => 0
+        ]);
+
+        \Session::flash('message', 'Background successfully added!');
+        \Session::flash('alert-class', 'alert-success');
+
+        return back();
+    }
+
+     public function deleteUnused(Request $request)
+     {
+         \Storage::delete(\Crypt::decrypt($request->id));
+
+         \Session::flash('message', 'Background deleted!');
+         \Session::flash('alert-class', 'alert-success');
+
+         return back();
+     }
+
 }
