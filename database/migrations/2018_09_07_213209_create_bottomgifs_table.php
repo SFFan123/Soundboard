@@ -19,6 +19,7 @@ class CreateBottomgifsTable extends Migration
             $table->text('filename');
             $table->boolean('enabled');
             $table->string('placement');
+            $table->timestamps();
         });
     }
 

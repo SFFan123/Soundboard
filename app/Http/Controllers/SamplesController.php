@@ -167,10 +167,12 @@ class SamplesController extends Controller
 
     public function manageUnused(Request $request)
     {
+        $filename = substr(\Crypt::decrypt($request->id) , 12);
+        $name = substr( $filename , 11 , strrpos ($filename, '.mp3') );
         sample::create([
-            'filename' => substr(\Crypt::decrypt($request->id) , 12),
-            'name' => substr(\Crypt::decrypt($request->id) , 27),
-            'display' => substr(\Crypt::decrypt($request->id) , 27),
+            'filename' => $filename,
+            'name' => $name,
+            'display' => $name,
             'subsound' => 0,
             'enabled' => 0
         ]);

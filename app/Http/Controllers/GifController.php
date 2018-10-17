@@ -18,7 +18,7 @@ class GifController extends Controller
         $unusedGifs = \Storage::files('gifs');
 
         foreach ($unusedGifs as $key => $unusedGif) {
-            if(!empty(bottomgif::where('filename' , substr($unusedGif,12))->first())) {
+            if(!empty(bottomgif::where('filename' , substr($unusedGif,20))->first())) {
                 unset($unusedGifs[$key]);
             }
         }
@@ -170,9 +170,10 @@ class GifController extends Controller
     public function manageUnused(Request $request)
     {
         bottomgif::create([
-            'GifName' => substr(\Crypt::decrypt($request->id) , 27),
-            'GifName' => 'left',
-            'enabled' => 0
+            'GifName' => substr(\Crypt::decrypt($request->id) , 20),
+            'filename' => substr(\Crypt::decrypt($request->id) , 20),
+            'enabled' => 0,
+            'placement' => 'left'
         ]);
 
         \Session::flash('message', 'Background successfully added!');
