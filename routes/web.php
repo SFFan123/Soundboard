@@ -104,6 +104,11 @@ Route::get('/gifs/edit/{id}', 'GifController@edit')->middleware('auth')->name('E
 //Update
 Route::patch('/gifs/edit/{id}', 'GifController@update')->middleware('auth');
 
+Route::post('/gifs/manageUnused', 'GifController@manageUnused')->middleware('auth');
+
+Route::delete('/gifs/manageUnused/', 'GifController@deleteUnused')->middleware('auth');
+
+
 ////Background Image
 Route::get('/background/manage', 'BackgroundController@index')->middleware('auth')->name('ManageBackground');
 

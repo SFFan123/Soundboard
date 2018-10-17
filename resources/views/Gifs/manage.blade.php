@@ -40,14 +40,14 @@ Manage Samples
                                         <img style="width: 100px; height: auto; background-color: white; left:0" src="/storage/{{$unusedGif}}"/>
                                         <a>{{substr($unusedGif,20)}}</a>
                                         <div class="form-group">
-                                            <form method="POST" action="/background/manageUnused/">
+                                            <form method="POST" action="/gifs/manageUnused/">
                                                 @csrf
                                                 @method('POST')
                                                 <input type="hidden" name="id" value="{{Crypt::encrypt($unusedGif)}}" >
                                                 <input type="submit" value="Add" class="btn btn-primary">
                                             </form>
                                             <div>
-                                                <form method="POST" action="/background/manageUnused/">
+                                                <form method="POST" action="/gifs/manageUnused/">
                                                     @csrf
                                                     @method('DELETE')
                                                     <input type="hidden" name="id" value="{{Crypt::encrypt($unusedGif)}}" >
