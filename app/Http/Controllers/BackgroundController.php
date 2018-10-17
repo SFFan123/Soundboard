@@ -3,6 +3,7 @@
 namespace Soundboard\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use phpDocumentor\Reflection\Types\Integer;
 use Soundboard\Background;
 use Soundboard\activeBackground;
@@ -229,7 +230,7 @@ class BackgroundController extends Controller
         Background::create([
             'filename' => substr(\Crypt::decrypt($request->id) , 12),
             'name' => substr(\Crypt::decrypt($request->id),27),
-            'enabled' => 0
+            'enabled' => 1
         ]);
 
         \Session::flash('message', 'Background successfully added!');
@@ -240,10 +241,18 @@ class BackgroundController extends Controller
 
      public function deleteUnused(Request $request)
      {
-         \Storage::delete(\Crypt::decrypt($request->id));
-
-         \Session::flash('message', 'Background deleted!');
-         \Session::flash('alert-class', 'alert-success');
+         $fullPath = \Crypt::decrypt($request->id);
+         $success = Storage::delete($fullPath);
+         if($success)
+         {
+             \Session::flash('message', 'Background deleted!');
+             \Session::flash('alert-class', 'alert-success');
+         }
+         else
+         {
+             \Session::flash('message', 'Error while deleting!');
+             \Session::flash('alert-class', 'alert-danger');
+         }
 
          return back();
      }

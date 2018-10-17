@@ -157,4 +157,40 @@ class SamplesController extends Controller
         return redirect('/samples/manage');
     }
 
+
+    public function manageUnused(Request $request)
+    {
+        sample::create([
+            'filename' => substr(\Crypt::decrypt($request->id) , 12),
+            'name' => substr(\Crypt::decrypt($request->id) , 27),
+            'display' => substr(\Crypt::decrypt($request->id) , 27),
+            'subsound' => 0,
+            'enabled' => 0
+        ]);
+
+        \Session::flash('message', 'Sample successfully added!');
+        \Session::flash('alert-class', 'alert-success');
+
+        return back();
+    }
+
+    public function deleteUnused(Request $request)
+    {
+        $fullPath = \Crypt::decrypt($request->id);
+        $success = Storage::delete($fullPath);
+        if($success)
+        {
+            \Session::flash('message', 'Sample deleted!');
+            \Session::flash('alert-class', 'alert-success');
+        }
+        else
+        {
+            \Session::flash('message', 'Error while deleting!');
+            \Session::flash('alert-class', 'alert-danger');
+        }
+
+        return back();
+    }
+
+
 }

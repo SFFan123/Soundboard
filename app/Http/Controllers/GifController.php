@@ -157,6 +157,38 @@ class GifController extends Controller
         $gifToDelete->delete();
 
         return redirect('/gifs/manage');
+    }
 
+
+    public function manageUnused(Request $request)
+    {
+        bottomgif::create([
+            'GifName' => substr(\Crypt::decrypt($request->id) , 27),
+            'GifName' => 'left',
+            'enabled' => 0
+        ]);
+
+        \Session::flash('message', 'Background successfully added!');
+        \Session::flash('alert-class', 'alert-success');
+
+        return back();
+    }
+
+    public function deleteUnused(Request $request)
+    {
+        $fullPath = \Crypt::decrypt($request->id);
+        $success = Storage::delete($fullPath);
+        if($success)
+        {
+            \Session::flash('message', 'Gif deleted!');
+            \Session::flash('alert-class', 'alert-success');
+        }
+        else
+        {
+            \Session::flash('message', 'Error while deleting!');
+            \Session::flash('alert-class', 'alert-danger');
+        }
+
+        return back();
     }
 }
