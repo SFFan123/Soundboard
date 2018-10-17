@@ -17,7 +17,14 @@ class SamplesController extends Controller
 	public function manageIndex()
     {
         $samples = sample::all();
-        return view('Samples.manage', compact('samples'));
+        $unusedSamples = \Storage::files('samples');
+
+        foreach ($unusedSamples as $key => $unusedSample) {
+            if(!empty(sample::where('filename' , substr($unusedSample,12))->first())) {
+                unset($unusedSamples[$key]);
+            }
+        }
+        return view('Samples.manage', compact('samples', 'unusedSamples'));
     }
 
 

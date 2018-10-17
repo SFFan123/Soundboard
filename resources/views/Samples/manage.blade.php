@@ -29,8 +29,39 @@ Manage Samples
                         </div>
                     </div>
                 @endif
+                @if(!empty($unusedSamples))
+                    <div class="card text-center">
+                        <div class="card-body bg-warning">
+                            <h5 class="card-title">{{count($unusedSamples)}} unused Sample file(s) in storage</h5>
+                            <a href="#AssignUnused" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle list-group-item list-group-item-primary">Assign</a>
+                            <div class="collapse list-unstyled" id="AssignUnused">
+                                @foreach($unusedSamples as $unusedSample)
+                                    <div class="form-group border border-dark bg-white">
+                                        <audio src="/storage/{{$unusedSample}}"></audio>
+                                        <a>{{substr($unusedSample,23)}}</a>
+                                        <div class="form-group">
+                                            <form method="POST" action="/samples/manageUnused">
+                                                @csrf
+                                                @method('POST')
+                                                <input type="hidden" name="id" value="{{Crypt::encrypt($unusedSample)}}" >
+                                                <input type="submit" value="Add" class="btn btn-primary">
+                                            </form>
+                                            <div>
+                                                <form method="POST" action="/samples/manageUnused">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <input type="hidden" name="id" value="{{Crypt::encrypt($unusedSample)}}" >
+                                                    <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to Delete this Sample (Filename: {{substr($unusedSample,27)}}) ?')">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                @endif
                 <div class="card-columns">
-                {{-- dd($samples) --}}
                 @foreach ($samples as $sample)
 
                         <div class="card">

@@ -67,6 +67,11 @@ Route::patch('/samples/edit/{id}', 'SamplesController@patch')->middleware('auth'
 //Delete
 Route::delete('/samples/delete/', 'SamplesController@destroy')->middleware('auth');
 
+Route::post('/samples/manageUnused', 'SamplesController@manageUnused')->middleware('auth');
+
+Route::delete('/samples/manageUnused/', 'SamplesController@deleteUnused')->middleware('auth');
+
+
 
 //// Memes
 Route::get('/memes/manage', 'MemeController@index')->middleware('auth')->name('ManageMemes');

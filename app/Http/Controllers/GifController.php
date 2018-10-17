@@ -15,7 +15,14 @@ class GifController extends Controller
     public function index()
     {
         $gifs = bottomgif::all();
-        return view('Gifs.manage', compact('gifs'));
+        $unusedGifs = \Storage::files('gifs');
+
+        foreach ($unusedGifs as $key => $unusedGif) {
+            if(!empty(bottomgif::where('filename' , substr($unusedGif,12))->first())) {
+                unset($unusedGifs[$key]);
+            }
+        }
+        return view('Gifs.manage', compact('gifs', 'unusedGifs'));
     }
 
     /**

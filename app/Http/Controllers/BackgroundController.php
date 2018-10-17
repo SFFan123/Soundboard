@@ -26,7 +26,7 @@ class BackgroundController extends Controller
     {
         $activeBackground = activeBackground::getActiveID();
         $backgrounds = Background::all();
-        $unusedBackgroundImages = \Storage::files('backgrounds');//->where(empty(Background::where('filename' , $item)->first() );
+        $unusedBackgroundImages = \Storage::files('backgrounds');
 
         foreach ($unusedBackgroundImages as $key => $background) {
             if(!empty(Background::where('filename' , substr($background,12))->first())) {
