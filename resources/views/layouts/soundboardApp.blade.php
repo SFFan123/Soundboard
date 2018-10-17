@@ -73,8 +73,7 @@
             </div>
         </nav>
         <main class="py-4">
-            <div id="cheapSidebar" style="position: relative;
-    float: left; margin-left: 1em;">
+            <div id="cheapSidebar" style="position: sticky; top: 5px; float: left; margin-left: 1em;">
                 <nav class="nav flex-column">
                     <a class="list-group-item list-group-item-primary">Super cheesy Navigation</a>
                     <a href="/home" class="list-group-item list-group-item-primary">Home</a>
