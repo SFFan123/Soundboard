@@ -148,6 +148,8 @@ class SamplesController extends Controller
 
         $request->sampleFile->storeAs('samples', $fileName);
 
+        \Session::flash('message', 'Sample successfully added!');
+        \Session::flash('alert-class', 'alert-success');
 
     	return redirect('/samples/manage');
     }

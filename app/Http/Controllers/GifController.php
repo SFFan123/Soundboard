@@ -75,6 +75,8 @@ class GifController extends Controller
 
         $request->gifFile->storeAs('gifs', $fileName);
 
+        \Session::flash('message', 'Gif successfully added!');
+        \Session::flash('alert-class', 'alert-success');
 
         return redirect('/gifs/manage');
     }

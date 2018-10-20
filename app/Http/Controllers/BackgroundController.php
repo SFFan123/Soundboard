@@ -84,6 +84,9 @@ class BackgroundController extends Controller
             $this->setActiveBackground(Background::first()->id);
         }
 
+        \Session::flash('message', 'Background successfully added!');
+        \Session::flash('alert-class', 'alert-success');
+
         return redirect('/background/manage');
     }
 
