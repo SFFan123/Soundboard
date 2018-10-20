@@ -18,9 +18,8 @@ class SamplesController extends Controller
     {
         $samples = sample::all();
         $unusedSamples = \Storage::files('samples');
-
         foreach ($unusedSamples as $key => $unusedSample) {
-            if(!empty(sample::where('filename' , substr($unusedSample,12))->first())) {
+            if(!empty(sample::where('filename' , substr($unusedSample,8))->first())) {
                 unset($unusedSamples[$key]);
             }
         }

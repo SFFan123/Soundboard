@@ -172,8 +172,8 @@ class GifController extends Controller
     public function manageUnused(Request $request)
     {
         bottomgif::create([
-            'GifName' => substr(\Crypt::decrypt($request->id) , 20),
-            'filename' => substr(\Crypt::decrypt($request->id) , 20),
+            'GifName' => substr(\Crypt::decrypt($request->id) , 5),
+            'filename' => substr(\Crypt::decrypt($request->id) , 5),
             'enabled' => 0,
             'placement' => 'left'
         ]);

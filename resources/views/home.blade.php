@@ -11,15 +11,7 @@
                 <div class="card">
                 <div class="card-header">Katie Soundboard moves to Laravel 5.7 <img src="https://static-cdn.jtvnw.net/emoticons/v1/549887/1.0" alt="katieAww"> </div>
                 <div class="card-body">
-                    <a class="list-group-item list-group-item-action list-group-item-success">Basic structure created</a>
-                    <a class="list-group-item list-group-item-action list-group-item-success">Basic database created</a>
-                    <a class="list-group-item list-group-item-action list-group-item-success">Authentication created</a>
-                    <a class="list-group-item list-group-item-action list-group-item-success">Sample Management</a>
-                    <a class="list-group-item list-group-item-action list-group-item-success">Gif Management <img src="https://cdn.betterttv.net/emote/59b594fe0d64e35b941728ec/1x"></a>
-                    <a class="list-group-item list-group-item-action list-group-item-success">Soundboard page completely changed to dynamic <img src="https://cdn.discordapp.com/emojis/393591416166809613.png?" style="width: 26px; height: 26px;"></a>
-                    <a class="list-group-item list-group-item-action list-group-item-success">Background Image Management <img src="https://cdn.discordapp.com/emojis/467095069959389184.png" style="height: 26px; width: 26px;"></a>
                     <div class="list-group-item list-group-item-action list-group-item-info">status on development visit <a href="https://github.com/SFFan123/Soundboard/issues">github.com/SFFan123/Soundboard/issues</a></div>
-
                 </div>
                 </div>
                 <div class="card">

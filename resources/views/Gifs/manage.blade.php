@@ -38,7 +38,7 @@ Manage Samples
                                 @foreach($unusedGifs as $unusedGif)
                                     <div class="form-group border border-dark bg-white">
                                         <img style="width: 100px; height: auto; background-color: white; left:0" src="/storage/{{$unusedGif}}"/>
-                                        <a>{{substr($unusedGif,20)}}</a>
+                                        <a>{{substr($unusedGif,5)}}</a>
                                         <div class="form-group">
                                             <form method="POST" action="/gifs/manageUnused/">
                                                 @csrf

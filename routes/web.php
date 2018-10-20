@@ -97,7 +97,7 @@ Route::get('/gifs/create', 'GifController@create')->middleware('auth')->name('Up
 
 Route::post('/gifs', 'GifController@store')->middleware('auth')->name('StoreGif');
 //Delete
-Route::delete('/gifs/delete/', 'MemeController@destroy')->middleware('auth');
+Route::delete('/gifs/delete/', 'GifController@destroy')->middleware('auth');
 
 //Get Edit form
 Route::get('/gifs/edit/{id}', 'GifController@edit')->middleware('auth')->name('EditGif');
