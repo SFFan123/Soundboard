@@ -82,7 +82,7 @@
                             <div class="card-body">
                                 <a href="/background/edit/{{$background->id}}" class="btn btn-primary">Edit</a>
 
-                                <form method="POST" action="/backgrounds/delete/" style="float:right;">
+                                <form method="POST" action="/background/delete" style="float:right;">
                                     @csrf
                                     @method('DELETE')
                                     <input type="hidden" name="id" value="{{Crypt::encrypt($background->id)}}" >

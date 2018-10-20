@@ -61,9 +61,9 @@ class GifController extends Controller
             $enabled = 1;
         }
 
-        $prefix = "g_";
-        $fileName = uniqid($prefix).$request->gifFile->getClientOriginalName();
-        $fileName = str_replace(' ', '_', $fileName);
+        $name = preg_replace("/[^a-z0-9\_\-\.]/i",'', $request->gifName);
+        $name = str_replace(' ', '_', $name);
+        $fileName = 'g_'.$name.'.gif';
 
 
         bottomgif::create([
@@ -76,7 +76,7 @@ class GifController extends Controller
         $request->gifFile->storeAs('gifs', $fileName);
 
 
-        return redirect('/home');
+        return redirect('/gifs/manage');
     }
 
     /**

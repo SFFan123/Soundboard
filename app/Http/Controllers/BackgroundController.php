@@ -66,10 +66,9 @@ class BackgroundController extends Controller
         {
             $enabled = 1;
         }
-
-        $prefix = "b_";
-        $fileName = uniqid($prefix).$request->backgroundFile->getClientOriginalName();
-        $fileName = str_replace(' ', '_', $fileName);
+        $name = preg_replace("/[^a-z0-9\_\-\.]/i",'', $request->backgroundName);
+        $name = str_replace(' ', '_', $name);
+        $fileName = 'b_'.$name.'.png';
 
 
         Background::create([
@@ -85,7 +84,7 @@ class BackgroundController extends Controller
             $this->setActiveBackground(Background::first()->id);
         }
 
-        return redirect('/home');
+        return redirect('/background/manage');
     }
 
     /**

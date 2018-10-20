@@ -120,7 +120,7 @@ Route::get('/background/edit/{id}', 'BackgroundController@edit')->middleware('au
 
 Route::patch('/background/edit/{id}', 'BackgroundController@update')->middleware('auth');
 
-Route::delete('/background/destroy', 'BackgroundController@destroy')->middleware('auth');
+Route::delete('/background/delete', 'BackgroundController@destroy')->middleware('auth');
 
 Route::patch('/background/edit', 'BackgroundController@updateCurrent')->middleware('auth');
 

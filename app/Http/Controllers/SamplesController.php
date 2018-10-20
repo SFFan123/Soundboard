@@ -133,8 +133,9 @@ class SamplesController extends Controller
             $subsound = 1;
         }
 
-        $prefix = "s_";
-    	$fileName = uniqid($prefix).$request->sampleFile->getClientOriginalName();
+        $name = preg_replace("/[^a-z0-9\_\-\.]/i",'', $request->sampleName);
+        $name = str_replace(' ', '_', $name);
+    	$fileName = 's_'.$name.'.mp3';
 
 
     	sample::create([
@@ -148,7 +149,7 @@ class SamplesController extends Controller
         $request->sampleFile->storeAs('samples', $fileName);
 
 
-    	return redirect('/home');
+    	return redirect('/samples/manage');
     }
 
 
