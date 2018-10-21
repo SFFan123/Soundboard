@@ -33,6 +33,10 @@
                     <div class="form-group">
                         <label for="sampleFile">Sample Filename:</label>
                         <label id="sampleFile">{{$sample->filename}}</label>
+                        <audio id="{{ $sample->id }}" style="float: right" class="border border-dark" controls>
+                            <source id="soundSource" src="/storage/samples/{{$sample->filename}}" type="audio/mp3" />
+                            Your browser doesn't support the HTML5 Audio/Video element.
+                        </audio>
                     </div>
 
                     <div class="form-group">
