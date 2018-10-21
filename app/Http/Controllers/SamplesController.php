@@ -114,7 +114,7 @@ class SamplesController extends Controller
 
     		'sampleFile' => 'required|file|max:4096|mimes:mpga',
             'sampleHTML' => 'required',
-    		'sampleName' => 'required',
+    		'sampleName' => 'required|unique:sample',
 
     	]);
 
@@ -171,6 +171,10 @@ class SamplesController extends Controller
     {
         $filename = substr(\Crypt::decrypt($request->id) , 12);
         $name = substr( $filename , 11 , strrpos ($filename, '.mp3') );
+        if( !empty( sample::where('name', $name)->first() ))
+        {
+            $name = $name.uniqid();
+        }
         sample::create([
             'filename' => $filename,
             'name' => $name,
