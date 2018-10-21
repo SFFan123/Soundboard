@@ -1,7 +1,7 @@
-@extends('layouts.soundboardApp')
+@extends('layouts.manageLayout')
 
-@section ('title')
-Manage Samples
+@section ('titlesub')
+Memes
 @endsection
 
 @section ('linkedJS')
@@ -12,10 +12,8 @@ Manage Samples
     <link rel="icon" type="image/png" href="https://static-cdn.jtvnw.net/emoticons/v1/559312/1.0" sizes="32x32">
 @endsection
 
-@section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+@section('contentSub')
+
                 @if(empty($memes->all()))
                     <div class="card text-center">
                         <div class="card-body">
@@ -45,7 +43,4 @@ Manage Samples
                         </div>
                     @endforeach
                 </div>
-            </div>
-        </div>
-    </div>
 @endsection
