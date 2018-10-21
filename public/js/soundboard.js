@@ -138,7 +138,7 @@
         
         function startsPlaying(id){
             var soundElement = document.getElementById('cell_'+ id);
-            if(soundElement.innerHTML.indexOf('\"Smaple-Name\"></a') === -1)
+            if(soundElement.innerHTML.indexOf('\"Sample-Name\"></a') === -1)
             {
                 soundElement.style.backgroundColor = "green";
                 currentMedia.push(soundElement.cloneNode(true));

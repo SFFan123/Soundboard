@@ -299,11 +299,11 @@ animation: 1s multicolor infinite;
         background-color: red;
     }
 }
-.Smaple-Name
+.Sample-Name
 {
  text-align: center;
 }
-.Smaple-Name:empty:after
+.Sample-Name:empty:after
 {
     content: "Empty Slot";
     font-style: italic;
@@ -382,4 +382,12 @@ button:disabled
 #player_control_buttons
 {
     float: right; 
+}
+
+.Sample-Name{
+    display: inline-block;
+}
+.Sample-Name > img{
+    position: relative;
+    top: 4px;
 }

@@ -65,7 +65,7 @@ Katie QUOTES
                     <div class="search-wrapper"> 
                         <form>
                             <input type="text" id="myInput" onkeyup="searchBarKeyUp();" placeholder="Search for Samples.." title="Type in a Sample name" style="margin-top:5px;"/>
-                            <button id="btnClearSearchbar" class="close-icon" type="reset" onclick="clearSearchBar();" style="visibility: hidden;" />
+                            <button id="btnClearSearchbar" class="close-icon" type="reset" onclick="clearSearchBar();" style="visibility: hidden;"></button>
                         </form>
                     </div>
                     </div>
@@ -73,7 +73,7 @@ Katie QUOTES
                         @foreach ($samples as $sample)
                         <div class="subGridContainer">
                             <div id="cell_{{ $sample->id }}" class="gird-item">
-                                <a class="Smaple-Name">{!! html_entity_decode($sample->display) !!}</a>
+                                <a class="Sample-Name">{!! html_entity_decode($sample->display) !!}</a>
                                 <a class="serach_Tag">{{$sample->name}}</a>
                                 <i class="fas fa-bars fa-border Meta-Data" title="ID: {{$sample->id}}"></i>
                             </div>
