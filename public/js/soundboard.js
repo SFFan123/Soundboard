@@ -1,4 +1,3 @@
-        var currentMeme;
         var running = false;
         var queuerunning = false;
         var playText = "Pause all";
@@ -229,26 +228,21 @@
                 }       
             }
         }
-        function onLoading(){
-            randomMeme();
-            console.log(currentMeme);
-            randomBottomGif();
-    }
 
         function clearSearchBar(){
             document.getElementById('myInput').value = "";
             searchBarKeyUp();
         }
 
-        function copyCurrentMeme()
+        function copyMeme()
         {
-            copyTextToClipboard(currentMeme);
-            alert("Copied the meme to clipboard");  
+            copyTextToClipboard();
+            alert("Copied the meme to clipboard");
         }
 
         function copyTextToClipboard(text) {
             var textArea = document.createElement("textarea");
-            textArea.value = text;
+            textArea.value = document.getElementById("meme_Clipboard_Text").innerText;
             document.body.appendChild(textArea);
             textArea.select();
             try {

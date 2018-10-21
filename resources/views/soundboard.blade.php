@@ -17,9 +17,12 @@ Katie QUOTES
 @section ('bodyContent')
         <div id="left-side-container" class="left-side-container">
             <div id="left-top-fixed-div">
-                <div id="random-meme-div" class="random-meme-div" onclick="copyCurrentMeme()" title="Click left to copy meme to clipboard">@if(!empty ( $randomMeme ))
+                @if(!empty ( $randomMeme ))
+                <div id="random-meme-div" class="random-meme-div" onclick="copyMeme()" title="Click left to copy meme to clipboard">
                         {!! html_entity_decode($randomMeme->memeText) !!}
-                    @endif</div>
+                    </div>
+                    <textarea style="display: none" id="meme_Clipboard_Text">{{$randomMeme->clipboardText}}</textarea>
+                @endif
                 <div id="currentMediaDisplayDiv"><ul id="currentMediaDisplay"></ul></div>
             </div>
         </div>
