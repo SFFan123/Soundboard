@@ -59,8 +59,10 @@ class MemeController extends Controller
             'enabled' => $enabled
         ]);
 
+        \Session::flash('message', 'Sample successfully added!');
+        \Session::flash('alert-class', 'alert-success');
 
-        return redirect('/home');
+        return redirect('/memes/manage');
     }
 
     /**

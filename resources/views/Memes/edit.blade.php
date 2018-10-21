@@ -10,7 +10,11 @@
 @endsection
 
 @section('customJS')
-
+<script>
+    function updatePreview() {
+        document.getElementById('preview').innerHTML = document.getElementById('memeHTML').value;
+    }
+</script>
 @endsection
 
 @section('content')
@@ -65,9 +69,9 @@
 
                     </div>
 
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary" id="bt_submit">Submit</button>
-
+                    <div class="form-group" style="text-align: center">
+                        <button type="submit" class="btn btn-primary" id="bt_submit" style="float: left">Submit</button>
+                        <a class="btn btn-info" id="btnUpdatePreview" onclick="updatePreview();"><i class="fas fa-sync-alt"></i> Update Preview</a>
                         <a class="btn btn-warning btn-close" href="/memes/manage" style="float: right;">Cancel</a>
                     </div>
                 </form>
@@ -84,6 +88,12 @@
                         </ul>
                     </div>
                 @endif
+                <div id="preview_container" style="text-align: center">
+                    <a>Preview: </a>
+                    <div id="preview"  class="border border-info" style="display: inline-block;">
+                        {!! html_entity_decode($meme->memeText) !!}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
