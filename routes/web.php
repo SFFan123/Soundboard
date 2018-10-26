@@ -129,6 +129,12 @@ Route::post('/background/manageUnused', 'BackgroundController@manageUnused')->mi
 Route::delete('/background/manageUnused/', 'BackgroundController@deleteUnused')->middleware('auth');
 
 
+
+Route::get('user/manage', 'UserController@index')->middleware('auth');
+
+Route::get('user/create', 'UserController@create')->middleware('auth');
+
+
 //Auth::routes();
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

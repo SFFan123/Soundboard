@@ -73,6 +73,7 @@
             </div>
         </nav>
         <main class="py-4">
+            @auth
             <div id="cheapSidebar" style="position: sticky; top: 5px; float: left; margin-left: 1em;">
                 <nav class="nav flex-column">
                     <a class="list-group-item list-group-item-primary">Super cheesy Navigation</a>
@@ -82,13 +83,11 @@
                         <a href="/samples/manage" class="list-group-item @if(strpos(Route::current()->uri,'samples/manage') !== false) list-group-item-success @else list-group-item-light @endif">Manage</a>
                         <a href="/samples/create" class="list-group-item @if(strpos(Route::current()->uri,'samples/create') !== false) list-group-item-success @else list-group-item-light @endif">Upload</a>
                     </div>
-
                     <a href="#MemesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle list-group-item list-group-item-primary">Memes</a>
                     <div class="collapse list-unstyled @if(strpos(Route::current()->uri,'memes') !== false) show @endif" id="MemesSubmenu">
                         <a href="/memes/manage" class="list-group-item @if(strpos(Route::current()->uri,'memes/manage') !== false) list-group-item-success @else list-group-item-light @endif">Manage</a>
                         <a href="/memes/create" class="list-group-item @if(strpos(Route::current()->uri,'memes/create') !== false) list-group-item-success @else list-group-item-light @endif">Upload</a>
                     </div>
-
                     <a href="#GifsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle list-group-item list-group-item-primary">Gifs</a>
                     <div class="collapse list-unstyled @if(strpos(Route::current()->uri,'gifs') !== false) show @endif" id="GifsSubmenu">
                         <a href="/gifs/manage" class="list-group-item @if(strpos(Route::current()->uri,'gifs/manage') !== false) list-group-item-success @else list-group-item-light @endif">Manage</a>
@@ -103,7 +102,8 @@
                     <a href="/">Soundboard</a>
                 </nav>
             </div>
-            @yield('content')
+            @endauth
+        @yield('content')
         </main>
     </div>
 </body>

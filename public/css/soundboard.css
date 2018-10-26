@@ -37,7 +37,7 @@ audio
     position: fixed;
     z-index: -1;
     width: 240px;
-    word-wrap: break-all;
+    word-wrap: break-word;
 }
 #queue_info_right_side
 {
