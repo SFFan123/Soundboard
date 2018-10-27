@@ -31,58 +31,86 @@
                 </div>
             @endif
 
+                <div class="card">
+                    <div class="card-header">{{ __('Register') }}</div>
 
-            <form method="POST" action="">
-                @csrf
-                <h2>Add a new User</h2>
+                    <div class="card-body">
+                        <form method="POST" action="">
+                            @csrf
 
-                <div class="form-group">
-                    <label for="Username">User Name</label>
-                    <input placeholder="Username" type="text" id="Username" name="Username" class="form-control" required>
-                </div>
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
 
-                <div class="form-group">
-                    <label for="UserHTML">e-mail</label>
-                    <input placeholder="e-mail" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="email" name="email" class="form-control" required>
-                </div>
+                                <div class="col-md-6">
+                                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" placeholder="Username" autocomplete="on" required autofocus>
+
+                                    @if ($errors->has('name'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" placeholder="e-mail@example.com" autocomplete="on" required>
+
+                                    @if ($errors->has('email'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" autocomplete="off" placeholder="Password" required>
+
+                                    @if ($errors->has('password'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" autocomplete="off" required>
+                                </div>
+                            </div>
 
 
+                            <div class="form-group border border-info rounded mx-auto">
+                                <div class="card-header bg-info">
+                                    Available Roles:
+                                </div>
+                                <div class="list-group list-group-flush">
+                                    @foreach($roles as $role)
+                                        <div class="form-group form-check" style="padding-left: 2em; padding-top: 1em;">
+                                            <input type="checkbox" class="form-check-input" id="{{$role->id}}" @if($role->name == 'user') checked disabled="true" title="Default Role" @endif>
+                                            <label class="form-check-label" for="{{$role->id}}">{{ ucfirst ($role->name) }} @if($role->name == 'user')(Default Role)@endif</label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
 
-                <div class="card" style="width: 18rem;">
-                    <div class="card-header">
-                        Available Roles:
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Add new User') }}
+                                </button>
+                            <button type="reset" class="btn btn-warning" style="float: right" tabindex="-1">{{__('Reset')}}</button>
+
+                        </form>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        @foreach($roles as $role)
-                            <li class="list-group-item">
-                                <input type="checkbox" type="checkbox" name="{{$role->id}}" class="form-check-input" id="{{$role->id}}" style="margin-left: 0.5em">
-                                <label class="form-check-label" style="margin-left: 2em">{{ ucfirst ($role->name) }}</label>
-                            </li>
-                        @endforeach
-                    </ul>
                 </div>
-
-                <hr>
-
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary" id="bt_submit">Submit</button>
-
-                    <a class="btn btn-warning btn-close" href="{{ route('home') }}" style="float: right;">Cancel</a>
-                </div>
-            </form>
-
-            @if ( count($errors) )
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-
-                            <li> {{ $error }} </li>
-
-                        @endforeach
-
-                    </ul>
-                </div>
-            @endif
         </div>
     </div>
 </div>
