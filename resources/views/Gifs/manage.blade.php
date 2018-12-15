@@ -1,7 +1,7 @@
 @extends('layouts.manageLayout')
 
 @section ('titlesub')
-Samples
+Gifs
 @endsection
 
 @section ('linkedJS')
@@ -21,7 +21,7 @@ Samples
                     <div class="card text-center">
                         <div class="card-body">
                             <h5 class="card-title">No Gifs here <img src="https://static-cdn.jtvnw.net/emoticons/v1/549934/2.0" /></h5>
-                            <a href="{{Route('UploadGif')}}" class="btn btn-success" style="margin-right: 20px;">Upload a Sample</a>
+                            <a href="{{Route('UploadGif')}}" class="btn btn-success" style="margin-right: 20px;">Upload a Gif</a>
                             <a href="{{Route('home')}}" class="btn btn-info">Go Back</a>
                         </div>
                     </div>
@@ -65,6 +65,12 @@ Samples
                             <div class="card-body">
                                 <h5 class="card-title">"{{$gif->GifName}}"</h5>
                                 <p class="card-text">ID: {{$gif->id}} </p>
+                                @if($gif->enabled)
+                                    <p class="card-text" style="color: #07b752">Endabled</p>
+                                @else
+                                    <p class="card-text" style="color: #e23531">Disabled</p>
+                                @endif
+                                <p><img class="img-thumbnail" style="height: 112px; width: auto;" src="/storage/gifs/{{$gif->filename}}"></p>
                                 <p class="card-text"><small class="text-muted">Last updated: {{$gif->updated_at->diffForHumans()}}</small></p>
 
                                 <a href="/gifs/edit/{{$gif->id}}" class="btn btn-primary">Edit</a>

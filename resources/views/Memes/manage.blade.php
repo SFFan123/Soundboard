@@ -23,12 +23,12 @@ Memes
                         </div>
                     </div>
                 @endif
-                <div class="card-columns">
+                <div class="card-deck">
                     @foreach ($memes as $meme)
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">{{$meme->memeName}}</h5>
-                                <p class="card-text">ID: {{$meme->id}} </p>
+                                <div class="card-body">{!! html_entity_decode($meme->memeText) !!} </div>
                                 <p class="card-text"><small class="text-muted">Last updated: {{$meme->updated_at->diffForHumans()}}</small></p>
 
                                 <a href="/memes/edit/{{$meme->id}}" class="btn btn-primary">Edit</a>
