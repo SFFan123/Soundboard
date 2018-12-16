@@ -21,12 +21,7 @@ class mainController extends Controller
         }
         catch (\Illuminate\Database\QueryException $exception)
         {
-            abort(503);
-            $data['title'] = '404';
-            $data['name'] = 'Page not found';
-            $data['exception'] = $exception;
-            return response()
-                ->view('errors.404',$data,404);
+            abort(500.12, 'Database not reachable.');
         }
     }
 }

@@ -8,6 +8,42 @@ Katie QUOTES
 <link rel="icon" type="image/png" href="https://static-cdn.jtvnw.net/emoticons/v1/496660/1.0" sizes="32x32">
 @endsection
 
+@section('sideCSS')
+    <style type="text/css">
+        table
+        {
+            border: none;
+            text-align: center;
+            vertical-align: middle;
+        }
+        tr
+        {
+            border-collapse: collapse;
+        }
+        td
+        {
+            min-height: 40px;
+            vertical-align: middle;
+        }
+        #Bottom_explnation_stuff
+        {
+            text-align: center;
+            font-size: 13px;
+            display: block;
+        }
+        #Bottom_explnation_stuff img
+        {
+            height:17px;
+            width: 17px;
+        }
+        .container {
+            background: white;
+            margin: auto;
+            width: 52%;
+        }
+    </style>
+@endsection
+
 @section ('linkedJS')
 <script src="/js/soundboard.js"></script>
 @endsection
