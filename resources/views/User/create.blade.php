@@ -96,8 +96,8 @@
                                 <div class="list-group list-group-flush">
                                     @foreach($roles as $role)
                                         <div class="form-group form-check" style="padding-left: 2em; padding-top: 1em;">
-                                            <input type="checkbox" class="form-check-input" id="{{$role->id}}" @if($role->name == 'user') checked disabled="true" title="Default Role" @endif>
-                                            <label class="form-check-label" for="{{$role->id}}">{{ ucfirst ($role->name) }} @if($role->name == 'user')(Default Role)@endif</label>
+                                            <input type="checkbox" class="form-check-input" id="role_{{$role->id}}" @if($role->name == 'user') checked disabled="true" title="Default Role" @endif>
+                                            <label class="form-check-label" for="role_{{$role->id}}">{{ ucfirst ($role->name) }} @if($role->name == 'user')(Default Role)@endif</label>
                                         </div>
                                     @endforeach
                                 </div>

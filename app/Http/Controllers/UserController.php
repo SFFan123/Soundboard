@@ -48,7 +48,13 @@ class UserController extends Controller
         ]);
 
         new Registered($user = $this->storeUser($request->all()));
+        $user->roles()->attach(Role::where('name', 'user')->first());
 
+        //TODO make this dynamic LOL
+        if($request->has('role_2'))
+        {
+            $user->roles()->attach(Role::where('name', Role::findOrFail('2')->name)->first());
+        }
 
         return back();
     }
@@ -131,7 +137,7 @@ class UserController extends Controller
             $user->password = Hash::make($request->password);
         }
         $user->name = trim($request->name);
-        //  TODO make this dynamic LOL
+        //TODO make this dynamic LOL
         if($request->has('role_2'))
         {
             $user->roles()->attach(Role::where('name', Role::findOrFail('2')->name)->first());

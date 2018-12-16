@@ -61,12 +61,11 @@
             </div>
             <div class="card-group">
                 <div class="card">
-                    <div class="card-header">User Management TODO</div>
+                    <div class="card-header">User Management</div>
                     <div class="card-body">
-                        <a>Soon <sup>TM</sup> </a>
                         <div class="btn-group" role="group" aria-label="Control Buttons" style="float:right">
-                            <button type="button" class="btn btn-primary disabled">Manage</button>
-                            <button type="button" class="btn btn-success disabled">Add New</button>
+                            <a href="{{Route('ManageUser')}}" class="btn btn-primary">Manage</a>
+                            <a href="{{Route('AddUser')}}" class="btn btn-success">Add New</a>
                         </div>
                     </div>
                 </div>

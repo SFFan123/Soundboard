@@ -98,6 +98,11 @@
                         <a href="/background/manage" class="list-group-item @if(strpos(Route::current()->uri,'background/manage') !== false) list-group-item-success @else list-group-item-light @endif">Manage</a>
                         <a href="/background/create" class="list-group-item @if(strpos(Route::current()->uri,'background/create') !== false) list-group-item-success @else list-group-item-light @endif">Upload</a>
                     </div>
+                    <a href="#UserSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle list-group-item list-group-item-primary">User</a>
+                    <div class="collapse list-unstyled  @if(strpos(Route::current()->uri,'user') !== false) show @endif" id="UserSubmenu">
+                        <a href="/user/manage" class="list-group-item @if(strpos(Route::current()->uri,'user/manage') !== false) list-group-item-success @else list-group-item-light @endif">Manage</a>
+                        <a href="/user/create" class="list-group-item @if(strpos(Route::current()->uri,'user/create') !== false) list-group-item-success @else list-group-item-light @endif">Add</a>
+                    </div>
                     <div class="dropdown-divider"></div>
                     <a href="/">Soundboard</a>
                 </nav>

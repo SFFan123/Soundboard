@@ -131,8 +131,8 @@ Route::delete('manageUnused/', 'BackgroundController@deleteUnused')->middleware(
 });
 
 Route::group(['prefix' => 'user'] , function (){
-    Route::get('manage', 'UserController@index')->middleware('auth');
-    Route::get('create', 'UserController@create')->middleware('auth');
+    Route::get('manage', 'UserController@index')->middleware('auth')->name('ManageUser');
+    Route::get('create', 'UserController@create')->middleware('auth')->name('AddUser');
     Route::post('create', 'UserController@store')->middleware('auth');
     Route::get('/edit/{id}', 'UserController@edit')->middleware('auth');
     Route::patch('edit/{id}', 'UserController@update')->middleware('auth');
