@@ -24,13 +24,7 @@ use Soundboard\Background;
 
 // PUBLIC ROUTES
 
-Route::get('/', function () {
-    $samples = sample::getEnabled();
-    $randomMeme = meme::getRandomMeme();
-    $bottomGif = bottomgif::getRandomGif();
-    $background = Background::getCurrent();
-    return view('soundboard', compact('samples','randomMeme','bottomGif', 'background'));
-});
+Route::get('/', 'mainController@index');
 
 
 Route::get('/samples/show/{sample}', 'SamplesController@show');

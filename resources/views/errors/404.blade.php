@@ -12,9 +12,11 @@
 @section('message', __('Sorry, the page you are looking for could not be found.'))
 
 @section('detail')
-    @if(strlen($exception->getMessage()) > 0))
-    {{$exception->getMessage()}}
-    @else
-    {{ 'No details provided' }}
+    @if(isset($exception))
+        @if(strlen($exception->getMessage()) > 0))
+        {{$exception->getMessage()}}
+        @else
+        {{ 'No details provided' }}
+        @endif
     @endif
 @endsection
