@@ -17,8 +17,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = \Soundboard\User::all();
-        $roles = Roles::all();
+        $users = User::all();
+        $roles = Role::all();
         return view('User.manage', compact('users'));
     }
 
@@ -70,9 +70,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editSelf($id)
+    public function edit($id)
     {
-        //
+        if(!is_numeric($id))
+        {
+            abort(404);
+        }
+        $user = User::findOrFail($id);
+        $roles = Role::all();
+
+        return view('User.edit', compact('user', 'roles'));
     }
 
     /**
@@ -93,9 +100,50 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateSelf(Request $request)
+    public function update($id, Request $request)
     {
-        //
+        if(!is_numeric($id))
+        {
+            abort(403);
+        }
+        $user = User::findOrFail($id);
+
+        $this->validate($request,
+            [
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255',
+            ]);
+
+        if($user->email != $request->email)
+        {
+            $this->validate($request,
+                [
+                    'email' => 'required|string|email|max:255|unique:users',
+                ]);
+            $user->email = trim($request->email);
+        }
+        if($request->password != null)
+        {
+            $this->validate($request,
+                [
+                    'password' => 'required|string|min:6|confirmed',
+                ]);
+            $user->password = Hash::make($request->password);
+        }
+        $user->name = trim($request->name);
+        //  TODO make this dynamic LOL
+        if($request->has('role_2'))
+        {
+            $user->roles()->attach(Role::where('name', Role::findOrFail('2')->name)->first());
+        }
+        else
+        {
+            $user->roles()->detach(Role::where('name', Role::findOrFail('2')->name)->first());
+        }
+
+        $user->save();
+
+        return back();
     }
 
 

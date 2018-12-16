@@ -1,7 +1,7 @@
 @extends('layouts.manageLayout')
 
 @section ('titlesub')
-Memes
+Users
 @endsection
 
 @section ('linkedJS')
@@ -14,30 +14,30 @@ Memes
 
 @section('contentSub')
 
-                @if(empty($memes->all()))
+                @if(empty($users->all()))
                     <div class="card text-center">
                         <div class="card-body">
-                            <h5 class="card-title">No Memes here <img src="https://static-cdn.jtvnw.net/emoticons/v1/549934/2.0" /></h5>
-                            <a href="{{Route('MakeMeme')}}" class="btn btn-success" style="margin-right: 20px;">Make a Meme</a>
+                            <h5 class="card-title">No Users here <img src="https://static-cdn.jtvnw.net/emoticons/v1/549934/2.0" /></h5>
+                            <a href="" class="btn btn-success disabled" style="margin-right: 20px;">Add user</a>
                             <a href="{{Route('home')}}" class="btn btn-info">Go Back</a>
                         </div>
                     </div>
                 @endif
                 <div class="card-columns">
-                    @foreach ($memes as $meme)
+                    @foreach ($users as $user)
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">{{$meme->memeName}}</h5>
-                                <p class="card-text">ID: {{$meme->id}} </p>
-                                <p class="card-text"><small class="text-muted">Last updated: {{$meme->updated_at->diffForHumans()}}</small></p>
+                                <h5 class="card-title">{{$user->name}}</h5>
+                                <p class="card-text">ID: {{$user->id}} </p>
+                                <p class="card-text"><small class="text-muted">Last updated: {{$user->updated_at->diffForHumans()}}</small></p>
 
-                                <a href="/memes/edit/{{$meme->id}}" class="btn btn-primary">Edit</a>
+                                <a href="/user/edit/{{$user->id}}" class="btn btn-primary">Edit</a>
 
-                                <form method="POST" action="/memes/delete/" style="float:right;">
+                                <form method="POST" action="/user/delete/" style="float:right;">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="hidden" name="id" value="{{Crypt::encrypt($meme->id)}}" >
-                                    <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to Delete this Sample (ID: {{$meme->id}}) ?')">
+                                    <input type="hidden" name="id" value="{{Crypt::encrypt($user->id)}}" >
+                                    <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to Delete this Sample (ID: {{$user->id}}) ?')">
                                 </form>
                             </div>
                         </div>

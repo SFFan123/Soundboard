@@ -110,29 +110,34 @@ Route::delete('/gifs/manageUnused/', 'GifController@deleteUnused')->middleware('
 
 
 ////Background Image
-Route::get('/background/manage', 'BackgroundController@index')->middleware('auth')->name('ManageBackground');
+Route::group(['prefix' => 'background'] , function (){
+Route::get('/manage', 'BackgroundController@index')->middleware('auth')->name('ManageBackground');
 
-Route::get('/background/create', 'BackgroundController@create')->middleware('auth')->name('UploadBackground');
+Route::get('/create', 'BackgroundController@create')->middleware('auth')->name('UploadBackground');
 
-Route::post('/background', 'BackgroundController@store')->middleware('auth')->name('StoreBackground');
+Route::post('/', 'BackgroundController@store')->middleware('auth')->name('StoreBackground');
 
-Route::get('/background/edit/{id}', 'BackgroundController@edit')->middleware('auth');
+Route::get('edit/{id}', 'BackgroundController@edit')->middleware('auth');
 
-Route::patch('/background/edit/{id}', 'BackgroundController@update')->middleware('auth');
+Route::patch('edit/{id}', 'BackgroundController@update')->middleware('auth');
 
-Route::delete('/background/delete', 'BackgroundController@destroy')->middleware('auth');
+Route::delete('delete', 'BackgroundController@destroy')->middleware('auth');
 
-Route::patch('/background/edit', 'BackgroundController@updateCurrent')->middleware('auth');
+Route::patch('edit', 'BackgroundController@updateCurrent')->middleware('auth');
 
-Route::post('/background/manageUnused', 'BackgroundController@manageUnused')->middleware('auth');
+Route::post('manageUnused', 'BackgroundController@manageUnused')->middleware('auth');
 
-Route::delete('/background/manageUnused/', 'BackgroundController@deleteUnused')->middleware('auth');
+Route::delete('manageUnused/', 'BackgroundController@deleteUnused')->middleware('auth');
+});
 
-
-
-Route::get('user/manage', 'UserController@index')->middleware('auth');
-
-Route::get('user/create', 'UserController@create')->middleware('auth');
+Route::group(['prefix' => 'user'] , function (){
+    Route::get('manage', 'UserController@index')->middleware('auth');
+    Route::get('create', 'UserController@create')->middleware('auth');
+    Route::post('create', 'UserController@store')->middleware('auth');
+    Route::get('/edit/{id}', 'UserController@edit')->middleware('auth');
+    Route::patch('edit/{id}', 'UserController@update')->middleware('auth');
+    Route::delete('delete/{id}', 'UserController@destroy')->middleware('auth');
+});
 
 
 //Auth::routes();
@@ -141,9 +146,10 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-// Registration Routes...
-//Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-//Route::post('register', 'Auth\RegisterController@register');
+    // Registration Routes...
+    //Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+    //Route::post('register', 'Auth\RegisterController@register');
+
 
 // Password Reset Routes...
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
