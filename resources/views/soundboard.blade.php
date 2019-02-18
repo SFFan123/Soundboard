@@ -45,7 +45,7 @@ Katie QUOTES
 @endsection
 
 @section ('linkedJS')
-<script src="/js/soundboard.js"></script>
+<script src="{{asset('/js/soundboard.js')}}"></script>
 @endsection
 @section ('linkedCSS')
 <link rel="stylesheet" type="text/css" href="{{ url('/css/soundboard.css') }}" />
@@ -133,7 +133,7 @@ Katie QUOTES
     </table>
         @if(!empty ( $bottomGif ))
     <div id="bottom-div" style="{{$bottomGif->placement}}: 0px;">
-        <img id="bottomGif" src="/storage/gifs/{{$bottomGif->filename}}" alt="{{$bottomGif->GifName}}">
+        <img id="bottomGif" src="{{asset('/gifs/'. $bottomGif->filename)}}" alt="{{$bottomGif->GifName}}">
     </div>
     @endif
 @endsection

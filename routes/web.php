@@ -24,23 +24,14 @@ use Soundboard\Background;
 
 // PUBLIC ROUTES
 
-Route::get('/', 'mainController@index');
+Route::get('/', 'mainController@soundboard')->name('main');
+Route::get('/bingo', 'mainController@bingo')->name('bingo');
+Route::get('/haliBingo', 'mainController@halibingo')->name('haliBingo');
+Route::get('/about', 'mainController@about')->name('about');
 
 
-Route::get('/samples/show/{sample}', 'SamplesController@show');
 
-
-Route::get('/about', function () {
-    return view('about');
-});
-
-Route::get('/bingo', function () {
-    return view('bingo.katieBingo');
-});
-
-Route::get('/haliBingo', function () {
-    return view('bingo.haliBingo');
-});
+Route::get('/samples/show/{sample}', 'SamplesController@show')->name('showSample');
 
 
 Route::get('/home', 'HomeController@index')->name('home');

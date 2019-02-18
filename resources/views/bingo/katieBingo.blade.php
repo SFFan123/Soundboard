@@ -2,6 +2,9 @@
 
 @section('title')BINGO
 @endsection
+@section('favicon')
+    <link rel="icon" type="image/png" href="https://static-cdn.jtvnw.net/emoticons/v1/1615451/1.0" sizes="32x32">
+@endsection
 @section('sideJS')
 <script type="text/javascript">
     var Area;
@@ -106,11 +109,17 @@
 @section('sideCSS')
     <style type="text/css">
         tr{
-            height: 120px;
+
         }
         td, th{
             text-align: center;
             vertical-align: middle !important;
+            height: 130px !important;
+            width: 130px !important;
+        }
+        th{
+            font-size: large;
+            border-bottom-width: 4px !important;
         }
         td:hover
         {
@@ -142,7 +151,7 @@
 @endsection
 
 @section('bodyContent')
-    <table class="table table-bordered table-dark td-hover">
+    <table class="table table-bordered table-dark td-hover" style="word-wrap:break-word;">
         <tr>
             <th scope="col">B</th>
             <th scope="col">I</th>
@@ -150,41 +159,22 @@
             <th scope="col">G</th>
             <th scope="col">O</th>
         </tr>
-        <tr>
-            <td id="00" onclick="clickOnCell(this.id)">Test1</td>
-            <td id="01" onclick="clickOnCell(this.id)">Test2</td>
-            <td id="02" onclick="clickOnCell(this.id)">Test3</td>
-            <td id="03" onclick="clickOnCell(this.id)">Test4</td>
-            <td id="04" onclick="clickOnCell(this.id)">Test5</td>
-        </tr>
-        <tr>
-            <td id="10" onclick="clickOnCell(this.id)">Test6</td>
-            <td id="11" onclick="clickOnCell(this.id)">Test7</td>
-            <td id="12" onclick="clickOnCell(this.id)">Test8</td>
-            <td id="13" onclick="clickOnCell(this.id)">Test9</td>
-            <td id="14" onclick="clickOnCell(this.id)">Test10</td>
-        </tr>
-        <tr>
-            <td id="20" onclick="clickOnCell(this.id)">Test11</td>
-            <td id="21" onclick="clickOnCell(this.id)">Test12</td>
-            <td id="22" onclick="clickOnCell(this.id)">Test13</td>
-            <td id="23" onclick="clickOnCell(this.id)">Test14</td>
-            <td id="24" onclick="clickOnCell(this.id)">Test15</td>
-        </tr>
-        <tr>
-            <td id="30" onclick="clickOnCell(this.id)">Test16</td>
-            <td id="31" onclick="clickOnCell(this.id)">Test17</td>
-            <td id="32" onclick="clickOnCell(this.id)">Test18</td>
-            <td id="33" onclick="clickOnCell(this.id)">Test19</td>
-            <td id="34" onclick="clickOnCell(this.id)">Test20</td>
-        </tr>
-        <tr>
-            <td id="40" onclick="clickOnCell(this.id)">Test21</td>
-            <td id="41" onclick="clickOnCell(this.id)">Test22</td>
-            <td id="42" onclick="clickOnCell(this.id)">Test23</td>
-            <td id="43" onclick="clickOnCell(this.id)">Test24</td>
-            <td id="44" onclick="clickOnCell(this.id)">Test25</td>
-        </tr>
+        @if(isset($tiles))
+            @for($i=0;$i<5;$i++)
+                <tr>
+                    @for($j=0;$j<5;$j++)
+                        <td id="{{$i . $j}}" onclick="clickOnCell(this.id)">@php
+                                    echo html_entity_decode($tiles[0]);
+                                    array_splice($tiles,0,1);
+                                    @endphp</td>
+                    @endfor
+                </tr>
+            @endfor
+        @else
+            <tr>
+                <td colspan="5" style="color:red">ERROR LOADING DATA <img src="https://cdn.betterttv.net/emote/56e9f494fff3cc5c35e5287e/1x" alt="monkaS"> </td>
+            </tr>
+        @endif
     </table>
     <div id="bottom-div" style="text-align: center">
         <p>

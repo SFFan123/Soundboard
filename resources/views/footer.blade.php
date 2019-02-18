@@ -17,7 +17,7 @@
                     <a>Powered by Laravel 5</a>
                     <hr>
                     <div style="display: flex;justify-content: space-between;padding-left: 1%;padding-right: 1%;">
-                        <a href="/about">About</a>
-                        <a href="/login">Login</a>
+                        <a href="{{route('about')}}">About</a>
+                        <a href="{{route('login')}}">Login</a>
                     </div>
     </span>
