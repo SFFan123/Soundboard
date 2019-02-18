@@ -2,14 +2,14 @@
 
 
 @section('customCSS')
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
 @endsection
 
 
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <a type="button" href="/gifs/manage" class="btn btn-light" style="position: relative; float: left; height: fit-content;" title="Go back to Meme Management"><i class="fas fa-angle-left"></i></a>
+            <a type="button" href="{{route('ManageGifs')}}" class="btn btn-light" style="position: relative; float: left; height: fit-content;" title="Go back to Meme Management"><i class="fas fa-angle-left"></i></a>
             <div class="col-md-8">
                 @if(Session::has('message') && Session::has('alert-class'))
                     <div class="alert {{ Session::get('alert-class', 'alert-info') }} alert-dismissible fade show" role="alert">
@@ -19,7 +19,7 @@
                         </button>
                     </div>
                 @endif
-                <form method="POST" action="/gifs/edit/{{{$gif->id}}}" enctype="multipart/form-data">
+                <form method="POST" action="{{route('EditGif', $gif->id)}}" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <h2>Edit a Gif</h2>
@@ -74,7 +74,7 @@
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary" id="bt_submit">Submit</button>
 
-                        <a class="btn btn-warning btn-close" href="/gifs/manage" style="float: right;">Cancel</a>
+                        <a class="btn btn-warning btn-close" href="{{route('ManageGifs')}}" style="float: right;">Cancel</a>
                     </div>
                 </form>
 

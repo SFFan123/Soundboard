@@ -34,17 +34,17 @@ Gifs
                             <div class="collapse list-unstyled" id="AssignUnused">
                                 @foreach($unusedGifs as $unusedGif)
                                     <div class="form-group border border-dark bg-white">
-                                        <img style="width: 100px; height: auto; background-color: white; left:0" src="/storage/{{$unusedGif}}"/>
+                                        <img style="width: 100px; height: auto; background-color: white; left:0" src="{{asset('/storage/'. $unusedGif }} "/>
                                         <a>{{substr($unusedGif,5)}}</a>
                                         <div class="form-group">
-                                            <form method="POST" action="/gifs/manageUnused/">
+                                            <form method="POST" action="{{route('ManageUnusedGifs')}}">
                                                 @csrf
                                                 @method('POST')
                                                 <input type="hidden" name="id" value="{{Crypt::encrypt($unusedGif)}}" >
                                                 <input type="submit" value="Add" class="btn btn-primary">
                                             </form>
                                             <div>
-                                                <form method="POST" action="/gifs/manageUnused/">
+                                                <form method="POST" action="{{route('ManageUnusedGifs')}}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <input type="hidden" name="id" value="{{Crypt::encrypt($unusedGif)}}" >
@@ -75,7 +75,7 @@ Gifs
 
                                 <a href="/gifs/edit/{{$gif->id}}" class="btn btn-primary">Edit</a>
 
-                                <form method="POST" action="/gifs/delete/" style="float:right;">
+                                <form method="POST" action="{{route('DeleteGif')}}" style="float:right;">
                                     @csrf
                                     @method('DELETE')
                                     <input type="hidden" name="id" value="{{Crypt::encrypt($gif->id)}}" >

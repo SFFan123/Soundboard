@@ -37,7 +37,7 @@ Route::get('/samples/show/{sample}', 'SamplesController@show')->name('showSample
 Route::get('/home', 'HomeController@index')->name('home');
 
 // SAMPLES
-Route::get('/samples/manage', 'SamplesController@manageIndex')->middleware('auth');
+Route::get('/samples/manage', 'SamplesController@manageIndex')->middleware('auth')->name('manageSample');
 
 Route::get('/samples/create', 'SamplesController@create')->middleware('auth')->name('MakeSample');
 
@@ -72,7 +72,7 @@ Route::get('/memes/edit/{id}', 'MemeController@edit')->middleware('auth')->name(
 Route::patch('/memes/edit/{id}', 'MemeController@update')->middleware('auth');
 
 //Delete
-Route::delete('/memes/delete/', 'MemeController@destroy')->middleware('auth');
+Route::delete('/memes/delete/', 'MemeController@destroy')->middleware('auth')->name('DeleteMeme');
 
 
 ////Gifs
@@ -82,14 +82,14 @@ Route::get('/gifs/create', 'GifController@create')->middleware('auth')->name('Up
 
 Route::post('/gifs', 'GifController@store')->middleware('auth')->name('StoreGif');
 //Delete
-Route::delete('/gifs/delete/', 'GifController@destroy')->middleware('auth');
+Route::delete('/gifs/delete/', 'GifController@destroy')->middleware('auth')->name('DeleteGif');
 
 //Get Edit form
 Route::get('/gifs/edit/{id}', 'GifController@edit')->middleware('auth')->name('EditGif');
 //Update
 Route::patch('/gifs/edit/{id}', 'GifController@update')->middleware('auth');
 
-Route::post('/gifs/manageUnused', 'GifController@manageUnused')->middleware('auth');
+Route::post('/gifs/manageUnused', 'GifController@manageUnused')->middleware('auth')->name('ManageUnusedGifs');
 
 Route::delete('/gifs/manageUnused/', 'GifController@deleteUnused')->middleware('auth');
 
@@ -102,15 +102,15 @@ Route::get('/create', 'BackgroundController@create')->middleware('auth')->name('
 
 Route::post('/', 'BackgroundController@store')->middleware('auth')->name('StoreBackground');
 
-Route::get('edit/{id}', 'BackgroundController@edit')->middleware('auth');
+Route::get('edit/{id}', 'BackgroundController@edit')->middleware('auth')->name('EditBackground');
 
-Route::patch('edit/{id}', 'BackgroundController@update')->middleware('auth');
+Route::patch('edit/{id}', 'BackgroundController@update')->middleware('auth')->name('UpdateBackground');
 
-Route::delete('delete', 'BackgroundController@destroy')->middleware('auth');
+Route::delete('delete', 'BackgroundController@destroy')->middleware('auth')->name('DeleteBackground');
 
 Route::patch('edit', 'BackgroundController@updateCurrent')->middleware('auth');
 
-Route::post('manageUnused', 'BackgroundController@manageUnused')->middleware('auth');
+Route::post('manageUnused', 'BackgroundController@manageUnused')->middleware('auth')->name('ManageUnusedBackgrounds');
 
 Route::delete('manageUnused/', 'BackgroundController@deleteUnused')->middleware('auth');
 });

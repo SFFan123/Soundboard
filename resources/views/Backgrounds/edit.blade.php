@@ -16,7 +16,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <a type="button" href="/background/manage" class="btn btn-light" style="position: relative; float: left; height: fit-content;" title="Go back to background Management"><i class="fas fa-angle-left"></i></a>
+            <a type="button" href="{{route('ManageBackground')}}" class="btn btn-light" style="position: relative; float: left; height: fit-content;" title="Go back to background Management"><i class="fas fa-angle-left"></i></a>
             <div class="col-md-8">
                 @if(Session::has('message') && Session::has('alert-class'))
                     <div class="alert {{ Session::get('alert-class', 'alert-info') }} alert-dismissible fade show" role="alert">
@@ -26,7 +26,7 @@
                         </button>
                     </div>
                 @endif
-                <form method="POST" action="/background/edit/{{$background->id}}" enctype="multipart/form-data">
+                <form method="POST" action="{{route('EditBackground', [$background->id])}}" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <h2>Edit a background</h2>
@@ -66,7 +66,7 @@
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary" id="bt_submit">Submit</button>
 
-                        <a class="btn btn-warning btn-close" href="/backgrounds/manage" style="float: right;">Cancel</a>
+                        <a class="btn btn-warning btn-close" href="{{route('ManageBackground')}}" style="float: right;">Cancel</a>
                     </div>
                 </form>
 

@@ -20,8 +20,8 @@
                     <div class="card-body">
                         <a>Currently {{ $samples->count() }} Sample(s) online.</a>
                         <div class="btn-group" role="group" aria-label="Control Buttons" style="float:right">
-                            <a href="/samples/manage" class="btn btn-primary">Manage</a>
-                            <a href="/samples/create" class="btn btn-success">Upload New</a>
+                            <a href="{{route('manageSample')}}" class="btn btn-primary">Manage</a>
+                            <a href="{{route('MakeSample')}}" class="btn btn-success">Upload New</a>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                             <a>Currently {{ $memes->count() }} Meme(s) online.</a>
                             <div class="btn-group" role="group" aria-label="Control Buttons" style="float:right">
                                 <a href="{{Route('ManageMemes')}}" class="btn btn-primary">Manage</a>
-                                <button type="button" class="btn btn-success">Upload New</button>
+                                <a href="{{route('MakeMeme')}}" class="btn btn-success">Upload New</a>
                             </div>
                         </div>
                     </div>

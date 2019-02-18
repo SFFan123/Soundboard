@@ -65,7 +65,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form method="POST" action="/gifs" enctype="multipart/form-data">
+            <form method="POST" action="{{route('StoreGif')}}" enctype="multipart/form-data">
                 @csrf
                 <h2>Upload a new Gif</h2>
 

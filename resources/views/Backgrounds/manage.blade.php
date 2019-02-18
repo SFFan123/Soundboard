@@ -35,14 +35,14 @@
                                         <img style="width: 150px; height: auto; background-color: white; left:0" src="/storage/{{$unusedBackground}}"/>
                                         <a>{{substr($unusedBackground,27)}}</a>
                                         <div class="form-group">
-                                            <form method="POST" action="/background/manageUnused/">
+                                            <form method="POST" action="{{route('ManageUnusedBackgrounds')}}">
                                                 @csrf
                                                 @method('POST')
                                                 <input type="hidden" name="id" value="{{Crypt::encrypt($unusedBackground)}}" >
                                                 <input type="submit" value="Add" class="btn btn-primary">
                                             </form>
                                             <div>
-                                                <form method="POST" action="/background/manageUnused/">
+                                                <form method="POST" action="{{route('ManageUnusedBackgrounds')}}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <input type="hidden" name="id" value="{{Crypt::encrypt($unusedBackground)}}" >
@@ -59,7 +59,7 @@
                 <div class="card-deck">
                     @foreach ($backgrounds as $background)
                         <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="{{'/storage/backgrounds/'.$background->filename}}" alt="Card image cap">
+                            <img class="card-img-top" src=" {{asset('/storage/backgrounds/'.$background->filename)}}" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">{{$background->name}}</h5>
                                 <p class="card-text">ID: {{$background->id}} </p>
@@ -69,7 +69,7 @@
                                     <li class="list-group-item bg-success">Active Background</li>
                                 @else
                                     <li class="list-group-item">
-                                        <form method="POST" action="/background/edit/">
+                                        <form method="POST" action="{{route('UpdateBackground')}}">
                                             @csrf
                                             @method('PATCH')
                                             <input type="hidden" name="id" value="{{Crypt::encrypt($background->id)}}" >
@@ -82,7 +82,7 @@
                             <div class="card-body">
                                 <a href="/background/edit/{{$background->id}}" class="btn btn-primary">Edit</a>
 
-                                <form method="POST" action="/background/delete" style="float:right;">
+                                <form method="POST" action="{{route('DeleteBackground')}}" style="float:right;">
                                     @csrf
                                     @method('DELETE')
                                     <input type="hidden" name="id" value="{{Crypt::encrypt($background->id)}}" >

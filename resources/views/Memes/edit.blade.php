@@ -20,7 +20,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <a type="button" href="/memes/manage" class="btn btn-light" style="position: relative; float: left; height: fit-content;" title="Go back to Meme Management"><i class="fas fa-angle-left"></i></a>
+            <a type="button" href="{{route('ManageMemes')}}" class="btn btn-light" style="position: relative; float: left; height: fit-content;" title="Go back to Meme Management"><i class="fas fa-angle-left"></i></a>
             <div class="col-md-8">
                 @if(Session::has('message') && Session::has('alert-class'))
                     <div class="alert {{ Session::get('alert-class', 'alert-info') }} alert-dismissible fade show" role="alert">
@@ -30,7 +30,7 @@
                         </button>
                     </div>
                 @endif
-                <form method="POST" action="/memes/edit/{{$meme->id}}" enctype="multipart/form-data">
+                <form method="POST" action="{{route('EditMeme', $meme->id)}}" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <h2>Edit a meme</h2>
@@ -72,7 +72,7 @@
                     <div class="form-group" style="text-align: center">
                         <button type="submit" class="btn btn-primary" id="bt_submit" style="float: left">Submit</button>
                         <a class="btn btn-info" id="btnUpdatePreview" onclick="updatePreview();"><i class="fas fa-sync-alt"></i> Update Preview</a>
-                        <a class="btn btn-warning btn-close" href="/memes/manage" style="float: right;">Cancel</a>
+                        <a class="btn btn-warning btn-close" href="{{route('ManageMemes')}}" style="float: right;">Cancel</a>
                     </div>
                 </form>
 

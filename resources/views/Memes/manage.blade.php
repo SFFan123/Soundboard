@@ -31,9 +31,9 @@ Memes
                                 <div class="card-body">{!! html_entity_decode($meme->memeText) !!} </div>
                                 <p class="card-text"><small class="text-muted">Last updated: {{$meme->updated_at->diffForHumans()}}</small></p>
 
-                                <a href="/memes/edit/{{$meme->id}}" class="btn btn-primary">Edit</a>
+                                <a href="{{route('EditMeme', $meme->id)}}" class="btn btn-primary">Edit</a>
 
-                                <form method="POST" action="/memes/delete/" style="float:right;">
+                                <form method="POST" action="{{route('DeleteMeme')}}" style="float:right;">
                                     @csrf
                                     @method('DELETE')
                                     <input type="hidden" name="id" value="{{Crypt::encrypt($meme->id)}}" >
