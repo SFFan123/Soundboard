@@ -72,7 +72,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form method="POST" action="/samples" enctype="multipart/form-data">
+            <form method="POST" action="{{route('storeSample')}}" enctype="multipart/form-data">
                 @csrf
                 <h2>Upload a new Sample</h2>
 

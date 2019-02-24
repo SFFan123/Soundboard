@@ -73,7 +73,7 @@ Gifs
                                 <p><img class="img-thumbnail" style="height: 112px; width: auto;" src="/storage/gifs/{{$gif->filename}}"></p>
                                 <p class="card-text"><small class="text-muted">Last updated: {{$gif->updated_at->diffForHumans()}}</small></p>
 
-                                <a href="/gifs/edit/{{$gif->id}}" class="btn btn-primary">Edit</a>
+                                <a href="{{route('EditGif', [$gif->id])}}" class="btn btn-primary">Edit</a>
 
                                 <form method="POST" action="{{route('DeleteGif')}}" style="float:right;">
                                     @csrf

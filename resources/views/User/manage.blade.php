@@ -31,14 +31,15 @@ Users
                                 <p class="card-text">ID: {{$user->id}} </p>
                                 <p class="card-text"><small class="text-muted">Last updated: {{$user->updated_at->diffForHumans()}}</small></p>
 
-                                <a href="/user/edit/{{$user->id}}" class="btn btn-primary">Edit</a>
-
-                                <form method="POST" action="/user/delete/" style="float:right;">
+                                <a href="{{route('EditUser', $user->id)}}" class="btn btn-primary">Edit</a>
+                                @if(count($users)>1)
+                                <form method="POST" action="{{route('DeleteUser', $user->id)}}" style="float:right;">
                                     @csrf
                                     @method('DELETE')
                                     <input type="hidden" name="id" value="{{Crypt::encrypt($user->id)}}" >
-                                    <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to Delete this Sample (ID: {{$user->id}}) ?')">
+                                    <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to Delete this User, (ID: {{$user->id}}) ?')">
                                 </form>
+                                @endif
                             </div>
                         </div>
                     @endforeach

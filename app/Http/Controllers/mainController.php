@@ -39,7 +39,7 @@ class mainController extends Controller
         }
         catch (\Illuminate\Database\QueryException $e)
         {}
-        return view('bingo.katieBingo', compact('background', 'tiles'));
+        return view('bingo.Bingo', compact('background', 'tiles'));
 
     }
     public function about()

@@ -10,12 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-////// FORCE HTTPS ON LIVE //////////////////
-if (env('APP_ENV') === 'production') {
-    URL::forceSchema('https');
-}
-/////////////////////////////////////////////
 
+use Illuminate\Support\Facades\URL;
 use Soundboard\sample;
 use Soundboard\meme;
 use Soundboard\bottomgif;
@@ -30,70 +26,58 @@ Route::get('/haliBingo', 'mainController@halibingo')->name('haliBingo');
 Route::get('/about', 'mainController@about')->name('about');
 
 
-
 Route::get('/samples/show/{sample}', 'SamplesController@show')->name('showSample');
 
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 // SAMPLES
-Route::get('/samples/manage', 'SamplesController@manageIndex')->middleware('auth')->name('manageSample');
-
-Route::get('/samples/create', 'SamplesController@create')->middleware('auth')->name('MakeSample');
-
-Route::get('/samples/edit/{id}', 'SamplesController@edit')->middleware('auth');
-
-//Create
-Route::post('/samples', 'SamplesController@store')->middleware('auth');
-
-//Update
-Route::patch('/samples/edit/{id}', 'SamplesController@patch')->middleware('auth');
-
-//Delete
-Route::delete('/samples/delete/', 'SamplesController@destroy')->middleware('auth');
-
-Route::post('/samples/manageUnused', 'SamplesController@manageUnused')->middleware('auth');
-
-Route::delete('/samples/manageUnused/', 'SamplesController@deleteUnused')->middleware('auth');
-
-
-
+Route::group(['prefix' => 'samples'], function () {
+    Route::get('/manage', 'SamplesController@manageIndex')->middleware('auth')->name('manageSample');
+    Route::get('/create', 'SamplesController@create')->middleware('auth')->name('MakeSample');
+    Route::get('/edit/{id}', 'SamplesController@edit')->middleware('auth');
+    //Create
+    Route::post('/', 'SamplesController@store')->middleware('auth')->name('storeSample');
+    //Update
+    Route::patch('/edit/{id}', 'SamplesController@patch')->middleware('auth');
+    //Delete
+    Route::delete('/delete/', 'SamplesController@destroy')->middleware('auth');
+    Route::post('/manageUnused', 'SamplesController@manageUnused')->middleware('auth');
+    Route::delete('/manageUnused/', 'SamplesController@deleteUnused')->middleware('auth');
+});
 //// Memes
-Route::get('/memes/manage', 'MemeController@index')->middleware('auth')->name('ManageMemes');
-
+Route::group(['prefix' => 'memes'], function () {
+    Route::get('manage', 'MemeController@index')->middleware('auth')->name('ManageMemes');
 //get Creation form
-Route::get('/memes/create', 'MemeController@create')->middleware('auth')->name('MakeMeme');
+    Route::get('/create', 'MemeController@create')->middleware('auth')->name('MakeMeme');
 //Create
-Route::post('/memes', 'MemeController@store')->middleware('auth')->name('StoreMeme');
-
+    Route::post('/', 'MemeController@store')->middleware('auth')->name('StoreMeme');
 //Get Edit form
-Route::get('/memes/edit/{id}', 'MemeController@edit')->middleware('auth')->name('EditMeme');
+    Route::get('/edit/{id}', 'MemeController@edit')->middleware('auth')->name('EditMeme');
 //Update
-Route::patch('/memes/edit/{id}', 'MemeController@update')->middleware('auth');
-
+    Route::patch('/edit/{id}', 'MemeController@update')->middleware('auth');
 //Delete
-Route::delete('/memes/delete/', 'MemeController@destroy')->middleware('auth')->name('DeleteMeme');
-
-
+    Route::delete('/delete/', 'MemeController@destroy')->middleware('auth')->name('DeleteMeme');
+});
 ////Gifs
-Route::get('/gifs/manage', 'GifController@index')->middleware('auth')->name('ManageGifs');
+Route::group(['prefix' => 'gifs'], function () {
+    Route::get('manage', 'GifController@index')->middleware('auth')->name('ManageGifs');
 
-Route::get('/gifs/create', 'GifController@create')->middleware('auth')->name('UploadGif');
+    Route::get('create', 'GifController@create')->middleware('auth')->name('UploadGif');
 
-Route::post('/gifs', 'GifController@store')->middleware('auth')->name('StoreGif');
+    Route::post('/', 'GifController@store')->middleware('auth')->name('StoreGif');
 //Delete
-Route::delete('/gifs/delete/', 'GifController@destroy')->middleware('auth')->name('DeleteGif');
+    Route::delete('delete', 'GifController@destroy')->middleware('auth')->name('DeleteGif');
 
 //Get Edit form
-Route::get('/gifs/edit/{id}', 'GifController@edit')->middleware('auth')->name('EditGif');
+    Route::get('edit/{id}', 'GifController@edit')->middleware('auth')->name('EditGif');
 //Update
-Route::patch('/gifs/edit/{id}', 'GifController@update')->middleware('auth');
+    Route::patch('edit/{id}', 'GifController@update')->middleware('auth');
 
-Route::post('/gifs/manageUnused', 'GifController@manageUnused')->middleware('auth')->name('ManageUnusedGifs');
+    Route::post('manageUnused', 'GifController@manageUnused')->middleware('auth')->name('ManageUnusedGifs');
 
-Route::delete('/gifs/manageUnused/', 'GifController@deleteUnused')->middleware('auth');
-
-
+    Route::delete('manageUnused', 'GifController@deleteUnused')->middleware('auth');
+});
 ////Background Image
 Route::group(['prefix' => 'background'] , function (){
 Route::get('/manage', 'BackgroundController@index')->middleware('auth')->name('ManageBackground');
@@ -114,19 +98,27 @@ Route::post('manageUnused', 'BackgroundController@manageUnused')->middleware('au
 
 Route::delete('manageUnused/', 'BackgroundController@deleteUnused')->middleware('auth');
 });
-
+///User
 Route::group(['prefix' => 'user'] , function (){
     Route::get('manage', 'UserController@index')->middleware('auth')->name('ManageUser');
     Route::get('create', 'UserController@create')->middleware('auth')->name('AddUser');
     Route::post('create', 'UserController@store')->middleware('auth');
-    Route::get('/edit/{id}', 'UserController@edit')->middleware('auth');
-    Route::patch('edit/{id}', 'UserController@update')->middleware('auth');
-    Route::delete('delete/{id}', 'UserController@destroy')->middleware('auth');
+    Route::get('/edit/{id}', 'UserController@edit')->middleware('auth')->name('EditUser');
+    Route::patch('/edit/{id}', 'UserController@update')->middleware('auth');
+    Route::delete('/delete/{id}', 'UserController@destroy')->middleware('auth')->name('DeleteUser');
+});
+
+Route::group(['prefix' => 'bingo'] , function (){
+    Route::get('/manage', 'UserController@index')->middleware('auth')->name('ManageBingo');
+    Route::get('/create', 'UserController@create')->middleware('auth')->name('AddBingo');
+    Route::post('/create', 'UserController@store')->middleware('auth');
+    Route::get('/edit/{id}', 'UserController@edit')->middleware('auth')->name('EditBingo');
+    Route::patch('/edit/{id}', 'UserController@update')->middleware('auth');
+    Route::delete('/delete/{id}', 'UserController@destroy')->middleware('auth');
 });
 
 
-//Auth::routes();
-
+///Auth::routes();
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
@@ -134,7 +126,6 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
     // Registration Routes...
     //Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
     //Route::post('register', 'Auth\RegisterController@register');
-
 
 // Password Reset Routes...
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');

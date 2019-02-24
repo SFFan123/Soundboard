@@ -80,7 +80,7 @@
                                 <li class="list-group-item"><small class="text-muted">Last updated: {{$background->updated_at->diffforhumans()}}</small></li>
                             </ul>
                             <div class="card-body">
-                                <a href="/background/edit/{{$background->id}}" class="btn btn-primary">Edit</a>
+                                <a href="{{route('EditBackground', $background->id)}}" class="btn btn-primary">Edit</a>
 
                                 <form method="POST" action="{{route('DeleteBackground')}}" style="float:right;">
                                     @csrf

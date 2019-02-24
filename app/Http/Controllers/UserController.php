@@ -172,9 +172,13 @@ class UserController extends Controller
      * @param  Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy($outid, Request $request)
     {
         $id = \Crypt::decrypt($request->id);
+        if($outid != $id)
+        {
+            abort(422 );
+        }
         $UserToDelete = User::find($id);
 
         $RolesToDelete = Role::where('user_id', $id);
