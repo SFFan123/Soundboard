@@ -109,12 +109,12 @@ Route::group(['prefix' => 'user'] , function (){
 });
 
 Route::group(['prefix' => 'bingo'] , function (){
-    Route::get('/manage', 'UserController@index')->middleware('auth')->name('ManageBingo');
-    Route::get('/create', 'UserController@create')->middleware('auth')->name('AddBingo');
-    Route::post('/create', 'UserController@store')->middleware('auth');
-    Route::get('/edit/{id}', 'UserController@edit')->middleware('auth')->name('EditBingo');
-    Route::patch('/edit/{id}', 'UserController@update')->middleware('auth');
-    Route::delete('/delete/{id}', 'UserController@destroy')->middleware('auth');
+    Route::get('/manage', 'BingoController@index')->middleware('auth')->name('ManageBingo');
+    Route::get('/create', 'BingoController@create')->middleware('auth')->name('AddBingo');
+    Route::post('/create', 'BingoController@store')->middleware('auth');
+    Route::get('/edit/{id}', 'BingoController@edit')->middleware('auth')->name('EditBingo');
+    Route::patch('/edit/{id}', 'BingoController@update')->middleware('auth');
+    Route::delete('/delete/{id}', 'BingoController@destroy')->middleware('auth');
 });
 
 
