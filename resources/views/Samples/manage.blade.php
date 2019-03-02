@@ -34,17 +34,17 @@ Samples
                             <div class="collapse list-unstyled" id="AssignUnused">
                                 @foreach($unusedSamples as $unusedSample)
                                     <div class="form-group border border-dark bg-white">
-                                        <audio src="/storage/{{$unusedSample}}"></audio>
+                                        <audio src="{{storage_path($unusedSample)}}"></audio>
                                         <a>{{substr($unusedSample,23)}}</a>
                                         <div class="form-group">
-                                            <form method="POST" action="/samples/manageUnused">
+                                            <form method="POST" action="{{route('manageUnusedSamples')}}">
                                                 @csrf
                                                 @method('POST')
                                                 <input type="hidden" name="id" value="{{Crypt::encrypt($unusedSample)}}" >
                                                 <input type="submit" value="Add" class="btn btn-primary">
                                             </form>
                                             <div>
-                                                <form method="POST" action="/samples/manageUnused">
+                                                <form method="POST" action="{{route('manageUnusedSamples')}}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <input type="hidden" name="id" value="{{Crypt::encrypt($unusedSample)}}" >
@@ -67,9 +67,9 @@ Samples
                                 <p class="card-text">ID: {{$sample->id}} </p>
                                 <p class="card-text"><small class="text-muted">Last updated: {{$sample->updated_at->diffForHumans()}}</small></p>
 
-                                <a href="/samples/edit/{{$sample->id}}" class="btn btn-primary">Edit</a>
+                                <a href="{{route('editSample', $sample->id)}}" class="btn btn-primary">Edit</a>
 
-                                <form method="POST" action="/samples/delete/" style="float:right;">
+                                <form method="POST" action="{{route('deleteSample') }}" style="float:right;">
                                     @csrf
                                     @method('DELETE')
                                     <input type="hidden" name="id" value="{{Crypt::encrypt($sample->id)}}" >

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class sample extends Model
 {
+
     public static function count()
     {
         return static::all()->count();

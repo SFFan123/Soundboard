@@ -131,6 +131,23 @@ Katie QUOTES
         </tr>
     <!-- End wrapper tabel -->
     </table>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $.ajax(
+                    {
+                        url: '{{route('apiSample')}}',
+                        type: 'get',
+                        success: function(data){
+                            console.log(data);
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            var errorMsg = 'Ajax request failed: ' + xhr.responseText;
+                            console.log(errorMsg);
+                        }
+                    }
+                )
+            });
+        </script>
         @if(!empty ( $bottomGif ))
     <div id="bottom-div" style="{{$bottomGif->placement}}: 0px;">
         <img id="bottomGif" src="{{asset('/gifs/'. $bottomGif->filename)}}" alt="{{$bottomGif->GifName}}">

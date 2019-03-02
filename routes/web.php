@@ -35,14 +35,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'samples'], function () {
     Route::get('/manage', 'SamplesController@manageIndex')->middleware('auth')->name('manageSample');
     Route::get('/create', 'SamplesController@create')->middleware('auth')->name('MakeSample');
-    Route::get('/edit/{id}', 'SamplesController@edit')->middleware('auth');
+    Route::get('/edit/{id}', 'SamplesController@edit')->middleware('auth')->name('editSample');
     //Create
     Route::post('/', 'SamplesController@store')->middleware('auth')->name('storeSample');
     //Update
     Route::patch('/edit/{id}', 'SamplesController@patch')->middleware('auth');
     //Delete
-    Route::delete('/delete/', 'SamplesController@destroy')->middleware('auth');
-    Route::post('/manageUnused', 'SamplesController@manageUnused')->middleware('auth');
+    Route::delete('/delete/', 'SamplesController@destroy')->middleware('auth')->name('deleteSample');
+    Route::post('/manageUnused', 'SamplesController@manageUnused')->middleware('auth')->name('manageUnusedSamples');
     Route::delete('/manageUnused/', 'SamplesController@deleteUnused')->middleware('auth');
 });
 //// Memes

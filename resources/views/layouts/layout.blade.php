@@ -6,7 +6,6 @@
 @section('title')
 @yield('title')
 @endsection
-
 @section('CSS')
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @yield('linkedCSS')
@@ -21,12 +20,13 @@
 @endsection
 
 @section('JS')
+    <script src="{{asset('js/app.js')}}"></script>
 @yield('sideJS')
 @yield('linkedJS')
 @endsection
 
 @section('body')
-<div class="container">
+<div class="container" id="app">
 	@yield('bodyContent')
 	@include('footer')
 </div>

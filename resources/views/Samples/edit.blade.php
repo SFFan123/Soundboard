@@ -16,7 +16,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <a type="button" href="/memes/manage" class="btn btn-light" style="position: relative; float: left; height: fit-content;" title="Go back to Meme Management"><i class="fas fa-angle-left"></i></a>
+            <a type="button" href="{{route('manageSample')}}" class="btn btn-light" style="position: relative; float: left; height: fit-content;" title="Go back to Sample Management"><i class="fas fa-angle-left"></i></a>
             <div class="col-md-8">
                 @if(Session::has('message') && Session::has('alert-class'))
                     <div class="alert {{ Session::get('alert-class', 'alert-info') }} alert-dismissible fade show" role="alert">
@@ -26,7 +26,7 @@
                         </button>
                     </div>
                 @endif
-                <form method="POST" action="/samples/edit/{{{$sample->id}}}" enctype="multipart/form-data">
+                <form method="POST" action="{{route('editSample', $sample->id)}}" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <h2>Edit a Sample</h2>
@@ -34,7 +34,7 @@
                         <label for="sampleFile">Sample Filename:</label>
                         <label id="sampleFile">{{$sample->filename}}</label>
                         <audio id="{{ $sample->id }}" style="float: right" class="border border-dark" controls>
-                            <source id="soundSource" src="/storage/samples/{{$sample->filename}}" type="audio/mp3" />
+                            <source id="soundSource" src="{{Storage::url('samples/' . $sample->filename)}}" type="audio/mp3" />
                             Your browser doesn't support the HTML5 Audio/Video element.
                         </audio>
                     </div>

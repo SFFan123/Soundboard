@@ -13,6 +13,10 @@ class SamplesController extends Controller
 	{
 	}
 
+    public function apiSample()
+    {
+        return $samples = sample::where('enabled', true)->get()->toJson();
+    }
 
 	public function manageIndex()
     {
@@ -114,7 +118,7 @@ class SamplesController extends Controller
 
     		'sampleFile' => 'required|file|max:4096|mimes:mpga',
             'sampleHTML' => 'required',
-    		'sampleName' => 'required|unique:sample',
+    		'sampleName' => 'required|unique:samples,name',
 
     	]);
 

@@ -9,7 +9,7 @@
 
     <title>@yield('title', config('app.name', 'Laravel') )</title>
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" ></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     @yield('customJS')
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
