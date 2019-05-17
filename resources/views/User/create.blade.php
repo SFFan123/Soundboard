@@ -1,4 +1,4 @@
-@extends('layouts.SoundboardApp')
+@extends('layouts.soundboardApp')
 
 @section('customJS')
 

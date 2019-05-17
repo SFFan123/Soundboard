@@ -1,4 +1,4 @@
-@extends('layouts.SoundboardApp')
+@extends('layouts.soundboardApp')
 
 @section('favicon')
     <link rel="icon" type="image/png" href="https://static-cdn.jtvnw.net/emoticons/v1/549953/1.0" sizes="32x32">
