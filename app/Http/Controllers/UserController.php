@@ -4,6 +4,8 @@ namespace Soundboard\Http\Controllers;
 
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 use Soundboard\Role;
 use Soundboard\User;
 
@@ -174,7 +176,7 @@ class UserController extends Controller
      */
     public function destroy($outid, Request $request)
     {
-        $id = \Crypt::decrypt($request->id);
+        $id = Crypt::decrypt($request->id);
         if($outid != $id)
         {
             abort(422 );
@@ -199,7 +201,7 @@ class UserController extends Controller
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => \Hash::make($data['password']),
+            'password' => Hash::make($data['password']),
         ]);
         $user->roles()->attach(Role::where('name', 'user')->first());
 
