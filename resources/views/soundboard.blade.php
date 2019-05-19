@@ -63,7 +63,6 @@ Katie QUOTES
             </div>
         </div>
         <div id="hint_right_side" onClick="stopAllSounds();">Hitting Esc will Stop all sounds <img src="https://static-cdn.jtvnw.net/emoticons/v1/549914/1.0" alt="katieLurk"><br>And also clicking on this <i class="fas fa-stop"></i></div>
-        <div id="info_right_side">Due to a Chrome update the Volume Control got changed to just mute and unmute. To gain the old controls back you need to go to <u>chrome://flags/#enable-modern-media-controls</u> and change the "New Media Controls" to "disabled".</div>
         <div id="queue_info_right_side">Queue running, stop with Esc! or with the stop button above this.</div>
     <table id="wrapperTable" bgcolor="#FFFFFF">
         <tr>
@@ -150,7 +149,7 @@ Katie QUOTES
         </script>
         @if(!empty ( $bottomGif ))
     <div id="bottom-div" style="{{$bottomGif->placement}}: 0px;">
-        <img id="bottomGif" src="{{asset('/gifs/'. $bottomGif->filename)}}" alt="{{$bottomGif->GifName}}">
+        <img id="bottomGif" src="{{asset('/storage/gifs/'. $bottomGif->filename)}}" alt="{{$bottomGif->GifName}}">
     </div>
     @endif
 @endsection
