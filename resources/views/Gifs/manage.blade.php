@@ -70,7 +70,7 @@ Gifs
                                 @else
                                     <p class="card-text" style="color: #e23531">Disabled</p>
                                 @endif
-                                <p><img class="img-thumbnail" style="height: 112px; width: auto;" src="/storage/gifs/{{$gif->filename}}"></p>
+                                <p><img class="img-thumbnail" style="height: 112px; width: auto;" src="{{asset('/storage/gifs/'. $gif->filename) }}"></p>
                                 <p class="card-text"><small class="text-muted">Last updated: {{$gif->updated_at->diffForHumans()}}</small></p>
 
                                 <a href="{{route('EditGif', [$gif->id])}}" class="btn btn-primary">Edit</a>

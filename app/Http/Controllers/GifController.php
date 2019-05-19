@@ -18,7 +18,7 @@ class GifController extends Controller
         $unusedGifs = \Storage::files('gifs');
 
         foreach ($unusedGifs as $key => $unusedGif) {
-            if(!empty(bottomgif::where('filename' , substr($unusedGif,22))->first())) {
+            if(!empty(bottomgif::where('filename' , substr($unusedGif, 5))->first())) {
                 unset($unusedGifs[$key]);
             }
         }
