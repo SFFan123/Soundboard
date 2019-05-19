@@ -34,7 +34,7 @@ Gifs
                             <div class="collapse list-unstyled" id="AssignUnused">
                                 @foreach($unusedGifs as $unusedGif)
                                     <div class="form-group border border-dark bg-white">
-                                        <img style="width: 100px; height: auto; background-color: white; left:0" src="{{asset('/storage/'. $unusedGif }} "/>
+                                        <img style="width: 100px; height: auto; background-color: white; left:0" src="{{asset('/storage/'. $unusedGif) }}"/>
                                         <a>{{substr($unusedGif,5)}}</a>
                                         <div class="form-group">
                                             <form method="POST" action="{{route('ManageUnusedGifs')}}">
