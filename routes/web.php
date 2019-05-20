@@ -104,7 +104,7 @@ Route::group(['prefix' => 'user'] , function (){
     Route::get('create', 'UserController@create')->middleware('auth')->name('AddUser');
     Route::post('create', 'UserController@store')->middleware('auth');
     Route::get('/edit/{id}', 'UserController@edit')->middleware('auth')->name('EditUser');
-    Route::patch('/edit/{id}', 'UserController@update')->middleware('auth');
+    Route::post('/edit/{id}', 'UserController@update')->middleware('auth');
     Route::delete('/delete/{id}', 'UserController@destroy')->middleware('auth')->name('DeleteUser');
 });
 

@@ -33,9 +33,8 @@
                         </button>
                     </div>
                 @endif
-                <form method="POST" action="/user/edit/{{$user->id}}">
+                <form method="POST" action="{{route('EditUser', $user->id)}}">
                     @csrf
-                    @method('PATCH')
                     <h2>Edit User " {{$user->name}} "</h2>
                     <div class="form-group">
                         <label for="userName">User Name</label>
@@ -82,8 +81,8 @@
                         <div class="list-group list-group-flush">
                             @foreach($roles as $role)
                                 <div class="form-group form-check" style="padding-left: 2em; padding-top: 1em;">
-                                    <input type="checkbox" class="form-check-input" name="role_{{$role->id}}" @if($role->name == 'user')disabled title="Default Role" @endif {{ $user->hasRole($role->name) ? 'checked':'' }}>
-                                    <label class="form-check-label" for="role_{{$role->id}}">{{ ucfirst ($role->name) }} @if($role->name == 'user')(Default Role)@endif</label>
+                                    <input type="checkbox" class="form-check-input" name="role_{{$role->id}}" @if($role->name == 'User')readonly checked title="Default Role" @endif {{ $user->hasRole($role->name) ? 'checked':'' }}>
+                                    <label class="form-check-label" for="role_{{$role->id}}">{{ ucfirst ($role->name) }}@if($role->name == 'User') (Default Role)@endif</label>
                                 </div>
                             @endforeach
                         </div>

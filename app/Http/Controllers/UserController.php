@@ -99,29 +99,6 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function editForeign($id)
-    {
-        if(\Auth::user()->id != $id)
-        {
-            \Auth::user()->authorizeRoles('Manager');
-        }
-
-        if(!is_numeric($id))
-        {
-            abort(404);
-        }
-        $user = User::findOrFail($id);
-        $roles = Role::all();
-
-        return view('User.edit', compact('user', 'roles'));
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -164,78 +141,31 @@ class UserController extends Controller
         }
         $user->name = trim($request->name);
         //TODO make this dynamic LOL
-        if($request->has('role_2'))
-        {
-            $user->roles()->attach(Role::where('name', Role::findOrFail('2')->name)->first());
-        }
-        else
-        {
-            $user->roles()->detach(Role::where('name', Role::findOrFail('2')->name)->first());
-        }
+        $roles = Role::all();
 
+        foreach ($roles as $role)
+        {
+            if($request->has('role_'. $role->id))
+            {
+                if(! $user->hasRole($role->name))
+                {
+                    $user->roles()->attach($role);
+                }
+            }
+            else
+            {
+                if($user->hasRole($role->name))
+                {
+                    $user->roles()->detach($role);
+                }
+            }
+        }
         $user->save();
 
         return back();
     }
 
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function updateForeign($id, Request $request)
-    {
-        if(!is_numeric($id))
-        {
-            abort(403);
-        }
-        if(\Auth::user()->id != $id)
-        {
-            \Auth::user()->authorizeRoles('Manager');
-        }
-        $user = User::findOrFail($id);
-
-        $this->validate($request,
-            [
-                'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255',
-            ]);
-
-        if($user->email != $request->email)
-        {
-            $this->validate($request,
-                [
-                    'email' => 'required|string|email|max:255|unique:users',
-                ]);
-            $user->email = trim($request->email);
-        }
-        if($request->password != null)
-        {
-            $this->validate($request,
-                [
-                    'password' => 'required|string|min:6|confirmed',
-                ]);
-            $user->password = Hash::make($request->password);
-        }
-        $user->name = trim($request->name);
-        //TODO make this dynamic LOL
-        if($request->has('role_2'))
-        {
-            $user->roles()->attach(Role::where('name', Role::findOrFail('2')->name)->first());
-        }
-        else
-        {
-            $user->roles()->detach(Role::where('name', Role::findOrFail('2')->name)->first());
-        }
-
-        $user->save();
-
-        return back();
-    }
 
     /**
      * Remove the specified resource from storage.
