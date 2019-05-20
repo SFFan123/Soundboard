@@ -2,7 +2,15 @@
 
 
 @section('customCSS')
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" type="text/css">
+<style type="text/css">
+    input[type="email"]{
+        -webkit-text-security: disc;
+    }
+    input[type="email"]:hover{
+        -webkit-text-security: none;
+    }
+</style>
 @endsection
 
 @section('favicon')
@@ -16,7 +24,6 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <a type="button" href="/user/manage" class="btn btn-light" style="position: relative; float: left; height: fit-content;" title="Go back to User Management"><i class="fas fa-angle-left"></i></a>
             <div class="col-md-8">
                 @if(Session::has('message') && Session::has('alert-class'))
                     <div class="alert {{ Session::get('alert-class', 'alert-info') }} alert-dismissible fade show" role="alert">
@@ -36,7 +43,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="email">E-mail address</label>
+                        <label>E-mail address</label> <a style="color:white; background-color: red; border-radius: 3px; padding:0px 2px;" title="This field contains sensitive information and should never be shown on stream!">Not Twitch Safe!</a>
                         <input type="email" id="email" name="email" class="form-control" value="{{ $user->email }}" required>
                     </div>
 

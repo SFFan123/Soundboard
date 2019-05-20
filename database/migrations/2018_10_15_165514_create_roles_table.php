@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -19,6 +20,16 @@ class CreateRolesTable extends Migration
             $table->string('description');
             $table->timestamps();
         });
+
+        DB::table('roles')->insert(
+            array(
+                ['name' => 'Manager',
+                'description' => 'Default Manager Role'],
+                ['name' => 'User',
+                'description' => 'Default User Role']
+            )
+        );
+
     }
 
     /**

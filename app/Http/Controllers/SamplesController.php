@@ -122,7 +122,7 @@ class SamplesController extends Controller
 
     	]);
 
-        $sampleHTML = htmlentities(request('sampleHTML'));
+        $sampleHTML = htmlentities($request->sampleHTML);
 
     	$enabled = 0;
     	$subsound = 0;

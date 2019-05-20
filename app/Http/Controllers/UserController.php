@@ -19,9 +19,10 @@ class UserController extends Controller
      */
     public function index()
     {
+        \Auth::user()->authorizeRoles('Manager');
         $users = User::all();
-        $roles = Role::all();
         return view('User.manage', compact('users'));
+
     }
 
     /**
@@ -31,7 +32,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = \Soundboard\Role::all();
+        \Auth::user()->authorizeRoles('Manager');
+        $roles = Role::all();
         return view('User.create', compact('roles'));
     }
 
@@ -43,6 +45,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        \Auth::user()->authorizeRoles('Manager');
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -58,7 +61,7 @@ class UserController extends Controller
             $user->roles()->attach(Role::where('name', Role::findOrFail('2')->name)->first());
         }
 
-        return back();
+        return redirect()->route('ManageUser');
     }
 
     /**
@@ -80,6 +83,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        if(\Auth::user()->id != $id)
+        {
+            \Auth::user()->authorizeRoles('Manager');
+        }
+
         if(!is_numeric($id))
         {
             abort(404);
@@ -98,7 +106,19 @@ class UserController extends Controller
      */
     public function editForeign($id)
     {
-        //
+        if(\Auth::user()->id != $id)
+        {
+            \Auth::user()->authorizeRoles('Manager');
+        }
+
+        if(!is_numeric($id))
+        {
+            abort(404);
+        }
+        $user = User::findOrFail($id);
+        $roles = Role::all();
+
+        return view('User.edit', compact('user', 'roles'));
     }
 
     /**
@@ -113,6 +133,10 @@ class UserController extends Controller
         if(!is_numeric($id))
         {
             abort(403);
+        }
+        if(\Auth::user()->id != $id)
+        {
+            \Auth::user()->authorizeRoles('Manager');
         }
         $user = User::findOrFail($id);
 
@@ -163,9 +187,54 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateForeign(Request $request)
+    public function updateForeign($id, Request $request)
     {
-        //
+        if(!is_numeric($id))
+        {
+            abort(403);
+        }
+        if(\Auth::user()->id != $id)
+        {
+            \Auth::user()->authorizeRoles('Manager');
+        }
+        $user = User::findOrFail($id);
+
+        $this->validate($request,
+            [
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255',
+            ]);
+
+        if($user->email != $request->email)
+        {
+            $this->validate($request,
+                [
+                    'email' => 'required|string|email|max:255|unique:users',
+                ]);
+            $user->email = trim($request->email);
+        }
+        if($request->password != null)
+        {
+            $this->validate($request,
+                [
+                    'password' => 'required|string|min:6|confirmed',
+                ]);
+            $user->password = Hash::make($request->password);
+        }
+        $user->name = trim($request->name);
+        //TODO make this dynamic LOL
+        if($request->has('role_2'))
+        {
+            $user->roles()->attach(Role::where('name', Role::findOrFail('2')->name)->first());
+        }
+        else
+        {
+            $user->roles()->detach(Role::where('name', Role::findOrFail('2')->name)->first());
+        }
+
+        $user->save();
+
+        return back();
     }
 
     /**
@@ -180,6 +249,10 @@ class UserController extends Controller
         if($outid != $id)
         {
             abort(422 );
+        }
+        if(\Auth::user()->id != $id)
+        {
+            \Auth::user()->authorizeRoles('Manager');
         }
         $UserToDelete = User::find($id);
 
@@ -198,6 +271,8 @@ class UserController extends Controller
 
     private function storeUser(array $data)
     {
+        \Auth::user()->authorizeRoles('Manager');
+
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],

@@ -98,11 +98,17 @@
                         <a href="{{route('ManageBackground')}}" class="list-group-item @if(strpos(Route::current()->uri,'background/manage') !== false) list-group-item-success @else list-group-item-light @endif">Manage</a>
                         <a href="{{route('UploadBackground')}}" class="list-group-item @if(strpos(Route::current()->uri,'background/create') !== false) list-group-item-success @else list-group-item-light @endif">Upload</a>
                     </div>
+                    @if(\Auth::user()->hasRole('Manager'))
                     <a href="#UserSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle list-group-item list-group-item-primary">User</a>
                     <div class="collapse list-unstyled  @if(strpos(Route::current()->uri,'user') !== false) show @endif" id="UserSubmenu">
                         <a href="{{route('ManageUser')}}" class="list-group-item @if(strpos(Route::current()->uri,'user/manage') !== false) list-group-item-success @else list-group-item-light @endif">Manage</a>
                         <a href="{{route('AddUser')}}" class="list-group-item @if(strpos(Route::current()->uri,'user/create') !== false) list-group-item-success @else list-group-item-light @endif">Add</a>
                     </div>
+                    @else
+                    <div class="collapse list-unstyled show" id="UserSubmenu">
+                        <a href="{{route('EditUser', \Auth::user()->id)}}" class="list-group-item list-group-item-primary">Account</a>
+                    </div>
+                    @endif
                     <div class="dropdown-divider"></div>
                     <a href="{{route('main')}}">Soundboard</a>
                 </nav>
