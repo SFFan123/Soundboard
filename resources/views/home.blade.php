@@ -16,7 +16,7 @@
             </div>
             <div class="card-group">
                 <div class="card">
-                    <div class="card-header">Sample Management</div>
+                    <div class="card-header font-weight-bold">Sample Management</div>
                     <div class="card-body">
                         <a>Currently {{ $samples->count() }} Sample(s) online.</a>
                         <div class="btn-group" role="group" aria-label="Control Buttons" style="float:right">
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header">Meme Management</div>
+                    <div class="card-header font-weight-bold">Meme Management</div>
                         <div class="card-body">
                             <a>Currently {{ $memes->count() }} Meme(s) online.</a>
                             <div class="btn-group" role="group" aria-label="Control Buttons" style="float:right">
@@ -38,7 +38,7 @@
             </div>
             <div class="card-group">
                 <div class="card">
-                    <div class="card-header">Gif Management</div>
+                    <div class="card-header font-weight-bold">Gif Management</div>
                         <div class="card-body">
                             <a>Currently {{ $gifs->count() }} Gif(s) online.</a>
                             <div class="btn-group" role="group" aria-label="Control Buttons" style="float:right">
@@ -48,9 +48,8 @@
                         </div>
                 </div>
                 <div class="card">
-                    <div class="card-header">Background Management</div>
+                    <div class="card-header font-weight-bold">Background Management</div>
                     <div class="card-body">
-
                         <a>Currently {{ $Backgrounds->count() }} Background(s) online.</a>
                         <div class="btn-group" role="group" aria-label="Control Buttons" style="float:right">
                             <a href="{{Route('ManageBackground')}}" class="btn btn-primary">Manage</a>
@@ -60,8 +59,8 @@
                     </div>
             </div>
             <div class="card-group">
-                <div class="card">
-                    <div class="card-header">Katie Bingo Management TODO</div>
+                <div class="card" style="color:grey">
+                    <div class="card-header font-weight-bold">Katie Bingo Management TODO</div>
                     <div class="card-body">
                         <a>Soon <sup>TM</sup> </a>
                         <div class="btn-group" role="group" aria-label="Control Buttons" style="float:right">
@@ -70,30 +69,19 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            @if(\Auth::user()->hasRole('Manager'))
-                <div class="card-group">
-                    <div class="card">
-                        <div class="card-header">User Management <a style="color:white; background-color: red; border-radius: 3px; padding:0px 2px; float:right" title="This Page contains sensitive information and should never be shown on stream!">Not Twitch Safe!</a></div>
+                @if(\Auth::user()->hasRole('Manager'))
+                    <div class="card bg-redwightstriped">
+                        <div class="card-header font-weight-bold">User Management <a class="bg-danger text-white rounded float-right font-weight-normal" title="This Page contains sensitive information and should never be shown on stream!">Not Twitch Safe!</a></div>
                         <div class="card-body">
+                            <a>Currently {{ $User }} User(s) registered.</a>
                             <div class="btn-group" role="group" aria-label="Control Buttons" style="float:right">
                                 <a href="{{Route('ManageUser')}}" class="btn btn-primary">Manage</a>
                                 <a href="{{Route('AddUser')}}" class="btn btn-success">Add New</a>
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header">User Level TODO</div>
-                        <div class="card-body">
-                            <a>Soon <sup>TM</sup> </a>
-                            <div class="btn-group" role="group" aria-label="Control Buttons" style="float:right">
-                                <button type="button" class="btn btn-primary disabled">Manage</button>
-                                <button type="button" class="btn btn-success disabled">Add New</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endif
+                @endif
+            </div>
         </div>
     </div>
 </div>

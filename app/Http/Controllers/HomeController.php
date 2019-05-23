@@ -6,6 +6,7 @@ use Soundboard\sample;
 use Soundboard\meme;
 use Soundboard\bottomgif;
 use Soundboard\Background;
+use Soundboard\User;
 
 class HomeController extends Controller
 {
@@ -30,6 +31,7 @@ class HomeController extends Controller
         $memes = meme::all();
         $gifs = bottomgif::all();
         $Backgrounds = Background::all();
-        return view('home', compact('samples','memes','gifs', 'Backgrounds'));
+        $User = User::all()->count();
+        return view('home', compact('samples','memes','gifs', 'Backgrounds', 'User'));
     }
 }

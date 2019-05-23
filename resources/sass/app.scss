@@ -12,3 +12,13 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+.bg-redwightstriped
+{
+  background: repeating-linear-gradient(
+        45deg,
+        white,
+        white 10px,
+        rgba(255, 0, 0, 0.15) 10px,
+        rgba(255, 0, 0, 0.15) 20px
+  );
+}
