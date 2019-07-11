@@ -14,7 +14,7 @@ class BingoController extends Controller
      */
     public function index()
     {
-        //
+        return "Manage View Goes here";
     }
 
     /**
@@ -24,7 +24,7 @@ class BingoController extends Controller
      */
     public function create()
     {
-        //
+        return "Create View Goes here";
     }
 
     /**

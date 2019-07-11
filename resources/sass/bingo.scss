@@ -1,0 +1,39 @@
+tr{
+
+}
+td, th{
+  text-align: center;
+  vertical-align: middle !important;
+  height: 130px !important;
+  width: 130px !important;
+}
+th{
+  font-size: large;
+  border-bottom-width: 4px !important;
+}
+td:hover
+{
+  background-color: #0088fb78;
+}
+#Bottom_explnation_stuff
+{
+  text-align: center;
+  font-size: 13px;
+  display: block;
+}
+#Bottom_explnation_stuff img
+{
+  height:17px;
+  width: 17px;
+}
+.container {
+  background: white;
+  margin: auto;
+  width: 52%;
+}
+#bottom-div img
+{
+  height: 56px;
+  width: auto;
+  max-width: 56px;
+}
