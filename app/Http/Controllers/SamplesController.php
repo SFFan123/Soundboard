@@ -3,6 +3,7 @@
 namespace Soundboard\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Soundboard\sample;
 use Soundboard\meme;
 use Soundboard\bottomgif;
@@ -39,7 +40,7 @@ class SamplesController extends Controller
 
     public function show(Sample $sample)
     {
-    	return view('Samples.Detail', compact('sample'));	
+    	return view('Samples.Detail', compact('sample'));
     }
 
 
