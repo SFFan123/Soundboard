@@ -3,10 +3,8 @@
 namespace Soundboard\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Soundboard\sample;
-use Soundboard\meme;
-use Soundboard\bottomgif;
+
 
 class SamplesController extends Controller
 {
@@ -136,7 +134,6 @@ class SamplesController extends Controller
         {
             $subsound = 1;
         }
-
         $name = preg_replace("/[^a-z0-9\_\-\.]/i",'', $request->sampleName);
         $name = str_replace(' ', '_', $name);
     	$fileName = 's_'.$name.'.mp3';

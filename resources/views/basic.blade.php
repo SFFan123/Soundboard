@@ -11,12 +11,10 @@
 
 @yield('CSS')
 
-@yield('JS')
-
 </head>
 <body>
 	@yield('body')
 </body>
-
+@yield('JS')
 @yield('jQuery')
 </html>

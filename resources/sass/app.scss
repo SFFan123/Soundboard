@@ -1,4 +1,7 @@
-
+* {
+    margin: 0;
+    padding: 0;
+}
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
@@ -8,6 +11,9 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+html, body {
+    height: 100%;
+}
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
