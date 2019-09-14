@@ -3,12 +3,12 @@
         var playText = "Pause all";
         var pauseText = "PLAY <b>ALL</b> AT ONCE";
         var currentPlayingIndex = 0;
-        
+
         var audioQueue = [];
         var allAudios = [];
         var currentMedia = [];
-        
-        window.onload = function(e){ 
+
+        window.onload = function(e){
             allAudios = document.getElementsByName("sound");
         }
 
@@ -24,7 +24,7 @@
         }
         function playAllSounds()
         {
-            var btn = document.getElementById('play'); 
+            var btn = document.getElementById('play');
             var isLimited = document.getElementById("playLimitation").checked;
             var allCount = allAudios.length;
             if(isLimited)
@@ -40,7 +40,7 @@
                             for (var i = 0; i<visibleAudio.length; i++) {
                                 visibleAudio[i].play();
                             }
-                            running = true; 
+                            running = true;
                         }
                     }
                     else
@@ -49,9 +49,9 @@
                         for (var i = 0; i<visibleAudio.length; i++) {
                             visibleAudio[i].play();
                         }
-                        running = true; 
+                        running = true;
                     }
-                    
+
                 }
             }
             else
@@ -64,12 +64,12 @@
                 }
                 running = true;
             }
-            
+
         }
         function stopAllSounds()
         {
-            var btn = document.getElementById('play'); 
-            
+            var btn = document.getElementById('play');
+
             document.getElementById('queue_info_right_side').style.display = "";
             btn.innerHTML = pauseText;
             enableQueueButton(false);
@@ -82,18 +82,18 @@
             document.getElementById("cspeed").value = speed;
             document.getElementById("myRange").value = speed;
             var oAudio = document.getElementsByName('sound');
-            
-            for(var i=0; i<oAudio.length; i++) 
+
+            for(var i=0; i<oAudio.length; i++)
             {
-                oAudio[i].playbackRate = speed;   
+                oAudio[i].playbackRate = speed;
             }
         }
         function rewindAudio() {
             if (window.HTMLAudioElement) {
-                try 
+                try
                 {
                     var oAudio = document.getElementsByName('sound');
-                    for(var i=0; i<oAudio.length; i++) 
+                    for(var i=0; i<oAudio.length; i++)
                     {
                         oAudio[i].currentTime = 0.0;
                     }
@@ -134,7 +134,7 @@
                 allAudios[id].play();
             }
         }
-        
+
         function startsPlaying(id){
             var soundElement = document.getElementById('cell_'+ id);
             if(soundElement.innerHTML.indexOf('\"Sample-Name\"></a') === -1)
@@ -156,7 +156,7 @@
         }
         function searchBarKeyUp(){
             searchFor();
-            var input = document.getElementById("myInput").value.length;
+            var input = document.getElementById("searchInput").value.length;
             if(input>0)
             {
                 document.getElementById('btnClearSearchbar').style.visibility = "visible";
@@ -168,11 +168,11 @@
         }
         function searchFor() {
             var input, filter, table, tr, td1, td2, td3, td4;
-            input = document.getElementById("myInput");
+            input = document.getElementById("searchInput");
             filter = input.value.toUpperCase();
             table = document.getElementById("soundTable");
             tr = table.getElementsByTagName("tr");
-            
+
             for (var i = 0; i < tr.length; i++) {
                 td1 = tr[i].getElementsByTagName("td")[0];
                 td2 = tr[i].getElementsByTagName("td")[1];
@@ -225,12 +225,12 @@
                         td3.style.filter = "";
                         td4.style.filter = "";
                     }
-                }       
+                }
             }
         }
 
         function clearSearchBar(){
-            document.getElementById('myInput').value = "";
+            document.getElementById('searchInput').value = "";
             searchBarKeyUp();
         }
 
@@ -280,7 +280,7 @@
             document.getElementById("player_forward").disabled = !enable;
             document.getElementById("playbutton").disabled = !enable;
         }
-        
+
         function runQueue()
         {
             queuerunning = true;
@@ -288,7 +288,7 @@
             playNextSampleInQueue();
             enableQueueButton(true);
         }
-        
+
         function playNextSampleInQueue()
             {
             if(audioQueue.length>0 && audioQueue.length>currentPlayingIndex)
@@ -347,7 +347,7 @@
             }
             running = !running;
         }
-        
+
         function getVisibleAudio() {
             var visibleAudio = [];
             for(var i=0;i<allAudios.length;i++)

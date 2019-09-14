@@ -53,76 +53,79 @@ Katie QUOTES
                     </div>
                 </div>
 
-                <div>
+                <div id="buttonAndSearch">
+                    <div id="topButtonsDiv">
+                        <button class="control_button" id="playQueue" onclick="queueAll();">
+                            Queue all, and play.
+                        </button>
+                        <button class="control_button" id="play" onclick="toggleAllSounds();" title="Warning this will play ALL sounds at once!">
+                            PLAY <b>ALL</b> AT ONCE
+                        </button>
+                        <button class="control_button" onclick="rewindAudio();">
+                            Rewind all
+                        </button>
+                        <button class="control_button" onclick="playRandomAudio();">
+                            Random play
+                        </button>
+                        <label for="allowMultiplaycheckbox">Allow multi(on random):
+                            <input id="allowMultiplaycheckbox" name="allowMultiplaycheckbox" type="checkbox" checked="checked" />
+                        </label>
+                        |
+                        <label for="playLimitation"><i>Limit to filtered samples</i>
+                            <input type="checkbox" id="playLimitation"/>
+                        </label>
+                    </div>
 
-                    <br>
-                    <button class="control_button" id="playQueue" onclick="queueAll();">
-                        Queue all, and play.
-                    </button>
-                    <button class="control_button" id="play" onclick="toggleAllSounds();" title="Warning this will play ALL sounds at once!">
-                        PLAY <b>ALL</b> AT ONCE
-                    </button>
-                    <button class="control_button" onclick="rewindAudio();">
-                        Rewind all
-                    </button>
-                    <button class="control_button" onclick="playRandomAudio();">
-                        Random play
-                    </button>
-                    <label for="allowMultiplaycheckbox">Allow multi(on random):
-                        <input id="allowMultiplaycheckbox" name="allowMultiplaycheckbox" type="checkbox" checked="checked" />
-                    </label>
-                    |
-                    <label for="playLimitation"><i>Limit to filtered samples</i>
-                        <input type="checkbox" id="playLimitation"/>
-                    </label>
-                    <br>
                 <div class="search-wrapper">
                     <form>
-                        <input type="text" id="myInput" onkeyup="searchBarKeyUp();" placeholder="Search for Samples.." title="Type in a Sample name" style="margin-top:5px;"/>
-                        <button id="btnClearSearchbar" class="close-icon" type="reset" onclick="clearSearchBar();" style="visibility: hidden;"></button>
+                        <input type="text" id="searchInput" onkeyup="searchBarKeyUp();" placeholder="Search for Samples.." title="Type in a Sample name"/>
+                        <button id="btnClearSearchbar" class="close-icon" type="reset" onclick="clearSearchBar();"></button>
                     </form>
                 </div>
                 </div>
-                <div id="soundTable">
-                    @foreach ($samples as $sample)
-                    <div class="subGridContainer">
-                        <div id="cell_{{ $sample->id }}" class="gird-item">
-                            <a class="Sample-Name">{!! html_entity_decode($sample->display) !!}</a>
-                            <a class="serach_Tag">{{$sample->name}}</a>
-                            <i class="fas fa-bars fa-border Meta-Data" title="ID: {{$sample->id}}"></i>
+                <div id="soundTable">@if(count($samples))
+                        @foreach ($samples as $sample)
+                        <div class="subGridContainer">
+                            <div id="cell_{{ $sample->id }}" class="gird-item">
+                                <a class="Sample-Name">{!! html_entity_decode($sample->display) !!}</a>
+                                <a class="serach_Tag">{{$sample->name}}</a>
+                                <i class="fas fa-bars fa-border Meta-Data" title="ID: {{$sample->id}}"></i>
+                            </div>
+                            <div class="gird-item">
+                                <audio name="sound"  id="{{ $sample->id }}" onplay="startsPlaying(id);" onpause="stopsPlaying(id);" controls>
+                                <source id="soundSource" src="/storage/samples/{{$sample->filename}}" type="audio/mp3" />
+                                Your browser doesn't support the HTML5 Audio/Video element.
+                                </audio>
+                            </div>
                         </div>
-                        <div class="gird-item">
-                            <audio name="sound"  id="{{ $sample->id }}" onplay="startsPlaying(id);" onpause="stopsPlaying(id);" controls>
-                            <source id="soundSource" src="/storage/samples/{{$sample->filename}}" type="audio/mp3" />
-                            Your browser doesn't support the HTML5 Audio/Video element.
-                            </audio>
-                        </div>
-                    </div>
-                    <!-- New Element -->
-                    @endforeach
-                </div>
+                        <!-- New Element -->
+                        @endforeach
+                @else<h3 style="text-align: center">No Samples to display!@endif</h3></div>
             </div>
         </div>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $.ajax(
-                    {
-                        url: '{{route('apiSample')}}',
-                        type: 'get',
-                        success: function(data){
-                            console.log(data);
-                        },
-                        error: function (xhr, ajaxOptions, thrownError) {
-                            var errorMsg = 'Ajax request failed: ' + xhr.responseText;
-                            console.log(errorMsg);
-                        }
-                    }
-                )
-            });
-        </script>
         @if(!empty ( $bottomGif ))
     <div id="bottom-div" style="{{$bottomGif->placement}}: 0px;">
         <img id="bottomGif" src="{{asset('/storage/gifs/'. $bottomGif->filename)}}" alt="{{$bottomGif->GifName}}">
     </div>
     @endif
+@endsection
+@section('sideJS')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*
+            $.ajax(
+                {
+                    url: '{{route('apiSample')}}',
+                    type: 'get',
+                    success: function(data){
+                        console.log(data);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        var errorMsg = 'Ajax request failed: ' + xhr.responseText;
+                        console.log(errorMsg);
+                    }
+                }
+            )*/
+        });
+    </script>
 @endsection

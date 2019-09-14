@@ -13,7 +13,6 @@
     body{
         background: url({{ (empty($background->filename) ) ?  'https://kabie.namic.co/resources/image/background_image/default.png' : 'storage/backgrounds/'.$background->filename }}), linear-gradient(to bottom, rgba(30, 75, 115, 1), rgba(115, 115, 115, 0.5)) repeat;
         background-size: auto, contain;
-        min-height: 1280px;
         }
 </style>
 @yield('sideCSS')

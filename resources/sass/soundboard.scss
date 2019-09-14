@@ -58,6 +58,83 @@ img+.emote
 .container {
     background: white;
 }
+.search-wrapper form{
+    background-color: #1c7430;
+    display: flex;
+}
+.search-box,.close-icon,.search-wrapper {
+    position: relative;
+    padding: 10px;
+}
+.search-wrapper {
+    width: 100%;
+    //margin: 1px auto auto;
+}
+.close-icon {
+    border:1px solid transparent;
+    background-color: transparent;
+    display: contents;
+    vertical-align: middle;
+    outline: 0;
+    cursor: pointer;
+    visibility: hidden;
+}
+.close-icon:after {
+    content: "X";
+    display: block;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    background-color: #FA9595;
+    z-index:1;
+    right: 35px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 2px;
+    border-radius: 50%;
+    text-align: center;
+    color: white;
+    font-weight: normal;
+    font-size: 12px;
+    box-shadow: 0 0 2px #E50F0F;
+    cursor: pointer;
+}
+.searchInput:not(:valid) ~ .close-icon {
+    display: none;
+}
+
+
+
+
+
+
+
+
+#buttonAndSearch
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+#topButtonsDiv{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0.5em 0;
+}
+#searchInput {
+    background-image: url('https://kabie.namic.co/resources/image/misc/katieRes.png');
+    background-position: 5px 5px;
+    background-size: 28px 28px;
+    background-repeat: no-repeat;
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+}
+
+
+
 
 
 
@@ -171,59 +248,9 @@ img+.emote
 }
 
 
-#myInput {
-    background-image: url('https://kabie.namic.co/resources/image/misc/katieRes.png');
-    background-position: 5px 5px;
-    background-size: 28px 28px;
-    background-repeat: no-repeat;
-    width: 90%;
-    font-size: 16px;
-    padding: 12px 20px 12px 40px;
-    border: 1px solid #ddd;
-    margin-bottom: 12px;
-}
 
-.search-box,.close-icon,.search-wrapper {
-    position: relative;
-    padding: 10px;
-}
-.search-wrapper {
-    width: 100%;
-    margin: auto;
-    margin-top: 1px;
-}
-.close-icon {
-    border:1px solid transparent;
-    background-color: transparent;
-    display: inline-block;
-    vertical-align: middle;
-    outline: 0;
-    cursor: pointer;
-}
-.close-icon:after {
-    content: "X";
-    display: block;
-    width: 15px;
-    height: 15px;
-    position: absolute;
-    background-color: #FA9595;
-    z-index:1;
-    right: 35px;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    padding: 2px;
-    border-radius: 50%;
-    text-align: center;
-    color: white;
-    font-weight: normal;
-    font-size: 12px;
-    box-shadow: 0 0 2px #E50F0F;
-    cursor: pointer;
-}
-.search-box:not(:valid) ~ .close-icon {
-    display: none;
-}
+
+
 .control_button
 {
     background-color: #e7e7e7;
