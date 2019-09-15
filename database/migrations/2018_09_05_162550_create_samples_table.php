@@ -18,8 +18,8 @@ class CreateSamplesTable extends Migration
             $table->string('filename');
             $table->text('name');
             $table->text('display');
-            $table->boolean('subsound');
-            $table->boolean('enabled');
+            $table->boolean('subsound')->index();
+            $table->boolean('enabled')->index();
             $table->timestamps();
         });
     }

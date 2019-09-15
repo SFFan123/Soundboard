@@ -17,7 +17,7 @@ class CreateBackgroundsTable extends Migration
             $table->increments('id');
             $table->text('name');
             $table->text('filename');
-            $table->boolean('enabled')->default(true);
+            $table->boolean('enabled')->default(true)->index();
             $table->timestamps();
         });
     }

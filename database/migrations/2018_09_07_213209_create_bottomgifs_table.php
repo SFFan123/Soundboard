@@ -17,7 +17,7 @@ class CreateBottomgifsTable extends Migration
             $table->increments('id');
             $table->string('GifName');
             $table->text('filename');
-            $table->boolean('enabled');
+            $table->boolean('enabled')->index();
             $table->string('placement');
             $table->timestamps();
         });

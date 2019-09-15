@@ -18,7 +18,7 @@ class CreateMemesTable extends Migration
             $table->string('memeName');
             $table->text('memeText');
             $table->text('clipboardText');
-            $table->boolean('enabled');
+            $table->boolean('enabled')->index();
             $table->timestamps();
         });
     }
