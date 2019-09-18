@@ -1,7 +1,7 @@
 <span id="Bottom_explnation_stuff">
 		<hr>
                     All Audio files were collected from <a href="https://www.twitch.tv/katie">Katie</a>'s Discord <img src="https://kabie.namic.co/resources/image/misc/discordIcon.png">
-                    <a target="_blank" href="https://discord.gg/katierouu">discord.gg/katierouu</a>
+                    <a target="_blank" href="https://discord.gg/katie">discord.gg/katie</a>
                     <br>
                     <li>Most emotes are loaded of
                          <a target="_blank" href="https://twitchemotes.com/channels/58529158">Twitch.tv</a>. </li>

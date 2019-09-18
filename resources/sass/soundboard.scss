@@ -27,10 +27,6 @@ button:disabled
     opacity: 0.6;
     cursor: not-allowed;
 }
-audio
-{
-    float:right;
-}
 img+.emote
 {
     width:28px;
@@ -110,7 +106,6 @@ img+.emote
 
 
 
-
 #buttonAndSearch
 {
     display: flex;
@@ -144,8 +139,40 @@ img+.emote
 
 
 
+#soundTable{
+    display: flex;
+    flex-wrap: wrap;
 
+}
+.Sample-Container{
+    flex-grow: 1;
+    flex-shrink: 0;
+    display: flex;
+    justify-items: center;
+}
+.Sample-item{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
 
+}
+.Sample-Name
+{
+    text-align: center;
+}
+.Sample-Name:empty:after
+{
+    content: "Empty Slot";
+    font-style: italic;
+}
+
+.Meta-Data
+{
+    margin-left: 5px;
+    margin-top: 2px;
+}
 
 #bottom-div{
     position: absolute;
@@ -281,15 +308,9 @@ img+.emote
     display:none;
 }
 
-.Meta-Data
-{
-    float: left;
-    margin-left: 5px;
-    margin-top: 2px;
-}
-
 #Bottom_explnation_stuff
 {
+    text-align: center;
     font-size: 13px;
     display: block;
 }
@@ -321,15 +342,7 @@ img+.emote
         background-color: red;
     }
 }
-.Sample-Name
-{
-    text-align: center;
-}
-.Sample-Name:empty:after
-{
-    content: "Empty Slot";
-    font-style: italic;
-}
+
 .fa-border{
     border-color: black;
     border-width: 2px;
@@ -400,20 +413,9 @@ img+.emote
     top: 4px;
 }
 
-#Bottom_explnation_stuff
-{
-    text-align: center;
-    font-size: 13px;
-    display: block;
-}
-#Bottom_explnation_stuff img
-{
-    height:17px;
-    width: 17px;
-}
+
 
 /*
-
 @media screen and (min-width: 1463px){
     #soundTable    {
         display: grid;
@@ -472,6 +474,8 @@ img+.emote
         border-bottom: none;
     }
 }
+
+
 
 
 .container {

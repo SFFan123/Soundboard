@@ -85,17 +85,20 @@ Katie QUOTES
                 </div>
                 <div id="soundTable">@if(count($samples))
                         @foreach ($samples as $sample)
-                        <div class="subGridContainer">
-                            <div id="cell_{{ $sample->id }}" class="gird-item">
-                                <a class="Sample-Name">{!! html_entity_decode($sample->display) !!}</a>
-                                <a class="serach_Tag">{{$sample->name}}</a>
-                                <i class="fas fa-bars fa-border Meta-Data" title="ID: {{$sample->id}}"></i>
-                            </div>
-                            <div class="gird-item">
-                                <audio name="sound"  id="{{ $sample->id }}" onplay="startsPlaying(id);" onpause="stopsPlaying(id);" controls>
-                                <source id="soundSource" src="/storage/samples/{{$sample->filename}}" type="audio/mp3" />
-                                Your browser doesn't support the HTML5 Audio/Video element.
-                                </audio>
+                        <div class="Sample-Container border">
+                            <div id="cell_{{ $sample->id }}" class="Sample-item">
+                                <div>
+                                    {{--<a href="{{route('showSample', $sample->id)}}"><i class="fas fa-bars fa-border Meta-Data" title="ID: {{$sample->id}}"></i></a>--}}
+                                    <i class="fas fa-bars fa-border Meta-Data" title="ID: {{$sample->id}}"></i>
+                                    <a class="Sample-Name">{!! html_entity_decode($sample->display) !!}</a>
+                                    <a class="serach_Tag">{{$sample->name}}</a>
+                                </div>
+                                <div>
+                                    <audio name="sound"  id="{{ $sample->id }}" onplay="startsPlaying(id);" onpause="stopsPlaying(id);" controls>
+                                    <source id="soundSource" src="{{ \Storage::url('/samples/' . $sample->filename) }}" type="audio/mp3" />
+                                    Your browser doesn't support the HTML5 Audio/Video element.
+                                    </audio>
+                                </div>
                             </div>
                         </div>
                         <!-- New Element -->
@@ -105,7 +108,7 @@ Katie QUOTES
         </div>
         @if(!empty ( $bottomGif ))
     <div id="bottom-div" style="{{$bottomGif->placement}}: 0px;">
-        <img id="bottomGif" src="{{asset('/storage/gifs/'. $bottomGif->filename)}}" alt="{{$bottomGif->GifName}}">
+        <img id="bottomGif" src="{{ \Storage::url('/gifs/' . $bottomGif->filename) }}" alt="{{$bottomGif->GifName}}">
     </div>
     @endif
 @endsection
