@@ -5,7 +5,7 @@ Katie QUOTES
 @endsection
 
 @section('favicon')
-<link rel="icon" type="image/png" href="https://static-cdn.jtvnw.net/emoticons/v1/496660/1.0" sizes="32x32">
+<link rel="icon" type="image/png" href="{{asset('/img/katieList.png')}}" sizes="32x32">
 @endsection
 
 @section('sideCSS')
