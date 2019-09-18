@@ -212,4 +212,8 @@ class UserController extends Controller
 
         return $user;
     }
+
+    public function apiUser(Request $request){
+        return $request->user();
+    }
 }

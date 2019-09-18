@@ -16,13 +16,6 @@ use Soundboard\sample;
 use Soundboard\meme;
 use Soundboard\bottomgif;
 use Soundboard\Background;
-
-
-Route::get('/test', function ()
-{
-    return view('englishonly');
-});
-
 // PUBLIC ROUTES
 
 Route::get('/', 'mainController@soundboard')->name('main');
