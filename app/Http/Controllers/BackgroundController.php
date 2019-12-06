@@ -87,7 +87,7 @@ class BackgroundController extends Controller
         \Session::flash('message', 'Background successfully added!');
         \Session::flash('alert-class', 'alert-success');
 
-        return redirect('/background/manage');
+        return redirect(route('ManageBackground'));
     }
 
     /**

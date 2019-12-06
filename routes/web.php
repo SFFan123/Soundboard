@@ -86,11 +86,11 @@ Route::post('/', 'BackgroundController@store')->middleware('auth')->name('StoreB
 
 Route::get('edit/{id}', 'BackgroundController@edit')->middleware('auth')->name('EditBackground');
 
-Route::patch('edit/{id}', 'BackgroundController@update')->middleware('auth')->name('UpdateBackground');
+Route::patch('edit/{id}', 'BackgroundController@update')->middleware('auth');
 
 Route::delete('delete', 'BackgroundController@destroy')->middleware('auth')->name('DeleteBackground');
 
-Route::patch('edit', 'BackgroundController@updateCurrent')->middleware('auth');
+Route::patch('updateCurrent', 'BackgroundController@updateCurrent')->middleware('auth')->name('UpdateBackground');
 
 Route::post('manageUnused', 'BackgroundController@manageUnused')->middleware('auth')->name('ManageUnusedBackgrounds');
 
