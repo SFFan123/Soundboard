@@ -6,8 +6,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
-use Soundboard\Role;
-use Soundboard\User;
+use App\Role;
+use App\User;
 
 
 class UserController extends Controller

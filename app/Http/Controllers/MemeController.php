@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Soundboard\meme;
+use App\meme;
 
 class MemeController extends Controller
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Soundboard\Console\Commands;
+namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Soundboard\Role;
-use Soundboard\User;
+use App\Role;
+use App\User;
 
 class makeAccount extends Command
 {

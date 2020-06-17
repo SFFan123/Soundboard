@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use phpDocumentor\Reflection\Types\Integer;
-use Soundboard\Background;
-use Soundboard\activeBackground;
+use App\Background;
+use App\activeBackground;
 
 class BackgroundController extends Controller
 {
