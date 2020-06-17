@@ -1,12 +1,8 @@
 <?php
 
-namespace Soundboard\Http\Controllers;
+namespace App\Http\Controllers;
 
-use Soundboard\sample;
-use Soundboard\meme;
-use Soundboard\bottomgif;
-use Soundboard\Background;
-use Soundboard\User;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -23,15 +19,10 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
-        $samples = sample::all();
-        $memes = meme::all();
-        $gifs = bottomgif::all();
-        $Backgrounds = Background::all();
-        $User = User::all()->count();
-        return view('home', compact('samples','memes','gifs', 'Backgrounds', 'User'));
+        return view('home');
     }
 }

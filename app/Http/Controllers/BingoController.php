@@ -1,6 +1,6 @@
 <?php
 
-namespace Soundboard\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Soundboard\BingoPhrase;
 use Illuminate\Http\Request;

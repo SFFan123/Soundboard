@@ -1,6 +1,6 @@
 <?php
 
-namespace Soundboard\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;

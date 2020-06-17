@@ -14,7 +14,7 @@
 
                     <br>
 
-                    <a>Powered by Laravel 6</a>
+                    <a>Powered by Laravel 7</a>
                     <hr>
                     <div style="display: flex;justify-content: space-between;padding-left: 1%;padding-right: 1%;">
                         <a href="{{route('about')}}">About</a>

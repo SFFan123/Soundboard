@@ -1,13 +1,13 @@
 <?php
 
-namespace Soundboard\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Soundboard\Background;
-use Soundboard\BingoPhrase;
-use Soundboard\bottomgif;
-use Soundboard\meme;
-use Soundboard\sample;
+use App\Background;
+use App\BingoPhrase;
+use App\bottomgif;
+use App\meme;
+use App\sample;
 
 class mainController extends Controller
 {
@@ -22,6 +22,7 @@ class mainController extends Controller
         }
         catch (\Illuminate\Database\QueryException $exception)
         {
+            throw $exception;
             abort(500.12, 'Database not reachable.');
         }
     }

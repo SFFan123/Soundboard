@@ -1,6 +1,6 @@
 <?php
 
-namespace Soundboard;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 

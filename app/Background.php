@@ -1,9 +1,9 @@
 <?php
 
-namespace Soundboard;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Soundboard\activeBackground;
+use App\activeBackground;
 
 class Background extends Model
 {
