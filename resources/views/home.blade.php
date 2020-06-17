@@ -9,7 +9,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="margin-bottom: 7px;">
-                <div class="card-header text-white bg-primary">Katie Soundboard moves to Laravel {{app()->version()}} <img src="/img/katieAwww2.ong" alt="katieAww"> </div>
+                <div class="card-header text-white bg-primary">Katie Soundboard moves to Laravel {{app()->version()}} <img src="/img/katieAwww2.png" alt="katieAww"> </div>
                 <div class="card-body">
                     <div class="list-group-item list-group-item-action list-group-item-info" >status on development visit <a href="https://github.com/SFFan123/Soundboard/issues">github.com/SFFan123/Soundboard/issues</a></div>
                 </div>
