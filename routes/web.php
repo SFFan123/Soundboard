@@ -117,5 +117,3 @@ Route::group(['prefix' => 'bingo'] , function (){
 
 
 Auth::routes(['register' => false]);
-
-Route::get('/home', 'HomeController@index')->name('home');
