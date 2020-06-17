@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Background;
+use App\bottomgif;
+use App\meme;
+use App\sample;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +28,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $samples = sample::all();
+        $memes = meme::all();
+        $gifs = bottomgif::all();
+        $Backgrounds = Background::all();
+        $User = User::all()->count();
+        return view('home', compact('samples','memes','gifs', 'Backgrounds', 'User'));
     }
 }
